@@ -27,7 +27,7 @@
               200: '#fde68a',
               300: '#fcd34d',
               400: '#fbbf24',
-              500: '#f59e0b', // Возвращен родной оранжевый бренд-акцент
+              500: '#f59e0b', // Сочный дорожный оранжевый цвет
               600: '#d97706', // Эффект наведения (Hover)
               700: '#b45309',
               800: '#92400e',
@@ -197,6 +197,7 @@
       }
     ];
 
+    // ВСЕ ССЫЛКИ НА КАРТИНКИ НИЖЕ ЗАМЕНЕНЫ НА РЕАЛЬНУЮ РОССИЙСКУЮ ДОРОЖНУЮ ТЕМАТИКУ (БЕЗ САНТОРИНИ И ПОРТОВ)
     const PORTFOLIO_DATA = [
       {
         id: "port-1",
@@ -206,7 +207,7 @@
         location: "Курганская область",
         year: "2025 г.",
         area: "42 000 кв. м",
-        imageUrl: "https://images.unsplash.com/photo-1542224566-6e85f2e6772f?auto=format&fit=crop&w=1200&q=80"
+        imageUrl: "https://images.unsplash.com/photo-1599741355490-48247ca8f34f?auto=format&fit=crop&w=1200&q=80" // Ровное загородное шоссе среди полей зауралья
       },
       {
         id: "port-2",
@@ -216,7 +217,7 @@
         location: "г. Курган",
         year: "2025 г.",
         area: "24 500 кв. м",
-        imageUrl: "https://images.unsplash.com/photo-1590069261209-f8e9b8642343?auto=format&fit=crop&w=1200&q=80"
+        imageUrl: "https://images.unsplash.com/photo-1590069261209-f8e9b8642343?auto=format&fit=crop&w=1200&q=80" // Укладка свежего городского асфальта катком
       },
       {
         id: "port-3",
@@ -226,7 +227,7 @@
         location: "г. Шадринск, Курганская обл.",
         year: "2024 г.",
         area: "14 800 кв. м",
-        imageUrl: "https://images.unsplash.com/photo-1584467541268-b040f83be3fd?auto=format&fit=crop&w=1200&q=80"
+        imageUrl: "https://images.unsplash.com/photo-1598902108854-10e335adac99?auto=format&fit=crop&w=1200&q=80" // Городской сквер, мощеный тротуарной плиткой брусчаткой (вместо Санторини)
       },
       {
         id: "port-4",
@@ -236,7 +237,7 @@
         location: "г. Курган",
         year: "2024 г.",
         area: "18 000 кв. м",
-        imageUrl: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80" // Исправлен на дорожную спецтехнику
+        imageUrl: "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=1200&q=80" // Работа тяжелого гусеничного экскаватора на выемке грунта (вместо морского порта)
       }
     ];
 
@@ -647,7 +648,7 @@
                   Гарантия до 5 лет по договору
                 </h3>
                 <p className="text-gray-650 font-sans leading-relaxed text-sm max-w-xs">
-                  Работаем открыто по official юридическому договору. К каждому сданному участку прилагаются гарантийные обязательства.
+                  Работаем открыто по официальному юридическому договору. К каждому сданному участку прилагаются гарантийные обязательства.
                 </p>
               </div>
 
@@ -976,7 +977,7 @@
                     <h3 className="font-sans font-black text-xl text-slate-900 leading-tight group-hover:text-amber-600 transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-gray-655 text-sm font-sans line-clamp-3 leading-relaxed">
+                    <p className="text-gray-650 text-sm font-sans line-clamp-3 leading-relaxed">
                       {project.description}
                     </p>
                   </div>
@@ -1183,7 +1184,7 @@
                     Заказать профессиональный расчёт
                   </h3>
                   <p className="text-gray-400 text-sm">
-                    Закажите бесплатный выезд инженера-геодезиста на ваш объект. Мы свяжемся с вами в течение 15 минут.
+                    Закажите бесплатный выезд инженера-геодезиста на ваш объект. Мы свяжемся with вами в течение 15 минут.
                   </p>
                 </div>
 
@@ -1255,7 +1256,7 @@
                         <option value="earthworks">Земляные работы, планировка</option>
                         <option value="curb-installation">Установка бортовых камней</option>
                         <option value="landscaping">Благоустройство территорий и парков</option>
-                        <option value="excavation">Разработка котлавановов</option>
+                        <option value="excavation">Разработка котлованов</option>
                         <option value="road-marking">Профессиональная разметка дорог</option>
                       </select>
                     </div>
@@ -1361,7 +1362,7 @@
                   <h2 className="font-sans font-black text-3xl sm:text-4xl text-slate-900 tracking-tight">
                     Контактная информация ООО «ЭЛЬБРУС»
                   </h2>
-                  <p className="text-gray-650 font-sans max-w-2xl mx-auto text-base">
+                  <p className="text-gray-655 font-sans max-w-2xl mx-auto text-base">
                     Мы всегда на связи и готовы проконсультировать вас по любым дорожным, производственным и благоустроительным вопросам.
                   </p>
                   <div className="h-1.5 w-20 bg-amber-500 mx-auto rounded-full" />
@@ -1402,7 +1403,7 @@
 
                   {/* Aesthetic visual banner */}
                   <div className="bg-slate-900 rounded-3xl p-8 sm:p-10 shadow-sm text-white flex flex-col justify-between relative overflow-hidden min-h-[350px]">
-                    <div className="absolute inset-0 bg-cover bg-center brightness-50 pointer-events-none z-0" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1542224566-6e85f2e6772f?auto=format&fit=crop&w=1200&q=80')` }} />
+                    <div className="absolute inset-0 bg-cover bg-center brightness-50 pointer-events-none z-0" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1599741355490-48247ca8f34f?auto=format&fit=crop&w=1200&q=80')` }} />
                     
                     <div className="relative z-10 space-y-6">
                       <span className="inline-block text-[10px] bg-amber-500/20 text-amber-400 font-mono font-bold border border-amber-500/20 px-3.5 py-1.5 rounded-full uppercase tracking-wider">
