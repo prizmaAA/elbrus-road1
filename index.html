@@ -1,44 +1,39 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ООО ЭЛЬБРУС — Дорожное строительство и благоустройство</title>
-  
-  <!-- Подключение красивых шрифтов с Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  
-  <!-- Интеграция современного Tailwind CSS через официальный CDN -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ООО ЭЛЬБРУС — Производство и дорожное строительство в Кургане</title>
+
+  <!-- Google Fonts: Inter & Montserrat & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
-            display: ["Montserrat", "sans-serif"],
-            mono: ["JetBrains Mono", "monospace"]
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            display: ['Montserrat', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
           }
         }
       }
     }
   </script>
 
+  <!-- React 18, React DOM, and Babel CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
   <style>
-    /* Плавные переходы для интерактивных элементов */
-    .tab-content {
-      display: none;
-    }
-    .tab-content.active {
-      display: block;
-      animation: fadeIn 0.35s ease-in-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    html {
+      scroll-behavior: smooth;
     }
     .scrollbar-none::-webkit-scrollbar {
       display: none;
@@ -47,837 +42,1166 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeIn {
+      animation: fadeIn 0.3s ease-out forwards;
+    }
   </style>
 </head>
-<body class="min-h-screen bg-slate-50/50 flex flex-col font-sans antialiased selection:bg-amber-500 selection:text-slate-950">
+<body class="min-h-screen bg-slate-50/50 text-slate-800 antialiased selection:bg-amber-500 selection:text-slate-950">
 
-  <!-- ВЕРХНЯЯ ИНФОРМАЦИОННАЯ ПОЛОСА -->
-  <div class="bg-slate-950 text-gray-400 py-2.5 px-4 text-xs font-medium border-b border-white/5">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
-      <div class="flex items-center space-x-2">
-        <span class="h-2 w-2 rounded-full bg-amber-500 animate-pulse"></span>
-        <span>Принимаем заявки и работаем по всей Курганской области и УрФО</span>
-      </div>
-      <div class="flex items-center space-x-4 font-mono text-[11px] tracking-wide">
-        <span>ООО «ЭЛЬБРУС»</span>
-        <span>|</span>
-        <span>ИНН: 4501194763</span>
-        <span>|</span>
-        <span>ОГРН: 1144501003570</span>
-      </div>
-    </div>
-  </div>
+  <div id="root"></div>
 
-  <!-- ШАПКА САЙТА (HEADER) -->
-  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-xs transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-20 sm:h-24">
-        <!-- Логотип компании -->
-        <div class="flex items-center space-x-3 cursor-pointer group" onclick="switchTab('about')">
-          <div class="bg-amber-500 text-slate-900 p-2.5 rounded-xl shadow-md transition-colors">
-            <i data-lucide="hammer" class="h-6 w-6"></i>
-          </div>
-          <div>
-            <span class="block font-display font-black text-xl sm:text-2xl tracking-tight text-slate-900 group-hover:text-amber-600 transition-colors">
-              ЭЛЬБРУС
-            </span>
-            <span class="block text-[10px] sm:text-xs font-mono uppercase tracking-[0.14em] text-slate-500 font-bold">
-              производство и дорожное строительство
-            </span>
-          </div>
-        </div>
+  <!-- React Code with Babel -->
+  <script type="text/babel">
+    const { useState, useEffect } = React;
 
-        <!-- Навигационные кнопки (Десктоп) -->
-        <nav class="hidden md:flex items-center space-x-1.5 lg:space-x-3">
-          <button onclick="switchTab('about')" id="nav-about" class="nav-btn px-4 py-2.5 rounded-xl font-display font-bold text-xs lg:text-sm tracking-wide uppercase transition-all duration-200 border-2 bg-slate-900 text-white border-slate-900">
-            О компании
-          </button>
-          <button onclick="switchTab('services')" id="nav-services" class="nav-btn px-4 py-2.5 rounded-xl font-display font-bold text-xs lg:text-sm tracking-wide uppercase transition-all duration-200 border-2 bg-transparent text-slate-700 border-transparent hover:bg-slate-50 hover:text-slate-900">
-            Услуги
-          </button>
-          <button onclick="switchTab('portfolio')" id="nav-portfolio" class="nav-btn px-4 py-2.5 rounded-xl font-display font-bold text-xs lg:text-sm tracking-wide uppercase transition-all duration-200 border-2 bg-transparent text-slate-700 border-transparent hover:bg-slate-50 hover:text-slate-900">
-            Наши работы
-          </button>
-          <button onclick="switchTab('contacts')" id="nav-contacts" class="nav-btn px-4 py-2.5 rounded-xl font-display font-bold text-xs lg:text-sm tracking-wide uppercase transition-all duration-200 border-2 bg-transparent text-slate-700 border-transparent hover:bg-slate-50 hover:text-slate-900">
-            Контакты
-          </button>
-        </nav>
+    // --- Векторные SVG Иконки как отдельные React компоненты для максимальной скорости ---
+    const HammerIcon = ({ className = 'h-5 w-5' }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M14.5 17.5 3 6V3h3l11.5 11.5" />
+        <path d="m8.5 14.5 10 10c1.1-1.1 1.1-2.9 0-4l-6-6" />
+        <path d="M16 16c-1.1 1.1-2.9 1.1-4 0l-4-4c-1.1-1.1-1.1-2.9 0-4l4-4c1.1-1.1 2.9-1.1 4 0l4 4c1.1 1.1 1.1 2.9 0 4Z" />
+      </svg>
+    );
 
-        <!-- Кнопка звонка (Десктоп) -->
-        <div class="hidden lg:flex items-center">
-          <a href="tel:+73522550476" class="flex items-center space-x-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-5 py-3 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md">
-            <i data-lucide="phone" class="h-4 w-4"></i>
-            <span class="font-display text-sm tracking-wide font-black">+7 (3522) 55-04-76</span>
-          </a>
-        </div>
+    const PhoneIcon = ({ className = 'h-5 w-5' }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+      </svg>
+    );
 
-        <!-- Кнопка мобильного меню -->
-        <div class="md:hidden">
-          <button onclick="toggleMobileMenu()" class="p-2.5 rounded-xl bg-slate-50 text-slate-700 hover:bg-slate-100 hover:text-slate-950 focus:outline-none">
-            <i data-lucide="menu" id="menu-icon-burger" class="h-6 w-6"></i>
-            <i data-lucide="x" id="menu-icon-close" class="h-6 w-6 hidden"></i>
-          </button>
-        </div>
-      </div>
-    </div>
+    const MailIcon = ({ className = 'h-5 w-5' }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect width="20" height="16" x="2" y="4" rx="2" />
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+      </svg>
+    );
 
-    <!-- Мобильное выпадающее меню -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100 py-4 px-4 space-y-2">
-      <button onclick="switchTab('about'); toggleMobileMenu()" class="block w-full text-left px-5 py-3 rounded-xl font-display font-bold text-sm uppercase tracking-wide bg-slate-100 text-slate-950">
-        О компании
-      </button>
-      <button onclick="switchTab('services'); toggleMobileMenu()" class="block w-full text-left px-5 py-3 rounded-xl font-display font-bold text-sm uppercase tracking-wide hover:bg-slate-50">
-        Услуги
-      </button>
-      <button onclick="switchTab('portfolio'); toggleMobileMenu()" class="block w-full text-left px-5 py-3 rounded-xl font-display font-bold text-sm uppercase tracking-wide hover:bg-slate-50">
-        Наши работы
-      </button>
-      <button onclick="switchTab('contacts'); toggleMobileMenu()" class="block w-full text-left px-5 py-3 rounded-xl font-display font-bold text-sm uppercase tracking-wide hover:bg-slate-50">
-        Контакты
-      </button>
-      <a href="tel:+73522550476" class="flex items-center justify-center space-x-2 w-full bg-amber-500 text-slate-950 font-bold px-5 py-3.5 rounded-xl text-center shadow-xs">
-        <i data-lucide="phone" class="h-4 w-4"></i>
-        <span class="font-display text-sm tracking-wide font-black">+7 (3522) 55-04-76</span>
-      </a>
-    </div>
-  </header>
+    const MapPinIcon = ({ className = 'h-5 w-5' }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+        <circle cx="12" cy="10" r="3" />
+      </svg>
+    );
 
-  <!-- ОСНОВНОЙ КОНТЕНТ (MAIN) -->
-  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 w-full">
+    const ClockIcon = ({ className = 'h-5 w-5' }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <polyline points="12 6 12 12 16 14" />
+      </svg>
+    );
 
-    <!-- Вкладка: О КОМПАНИИ (ABOUT) -->
-    <div id="tab-about" class="tab-content active space-y-16">
-      
-      <!-- Промо-блок (Hero) -->
-      <section class="relative bg-slate-900 rounded-3xl overflow-hidden shadow-2xl">
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-amber-500/10 via-slate-950/95 to-slate-950 pointer-events-none z-0"></div>
-        
-        <div class="relative z-10 px-6 py-16 sm:py-20 md:py-24 max-w-5xl mx-auto text-center space-y-8">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-500 border border-amber-500/25 text-xs font-semibold tracking-wider uppercase">
-            <i data-lucide="star" class="h-3.5 w-3.5 fill-current"></i>
-            Лидеры дорожного строительства в регионе
-          </div>
+    const TruckIcon = ({ className = 'h-5 w-5' }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect width="16" height="11" x="2" y="7" rx="2" />
+        <polygon points="18 8 22 12 22 18 18 18" />
+        <circle cx="6.5" cy="18.5" r="2.5" />
+        <circle cx="16.5" cy="18.5" r="2.5" />
+      </svg>
+    );
 
-          <h1 class="font-display font-black text-4xl sm:text-5xl md:text-6xl text-white tracking-tight leading-tight">
-            Надёжные дороги для <span class="text-amber-500">будущего</span> поколения
-          </h1>
+    const LayersIcon = ({ className = 'h-5 w-5' }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="m12 3-10 5 10 5 10-5-10-5Z" />
+        <path d="m2 17 10 5 10-5" />
+        <path d="m2 12 10 5 10-5" />
+      </svg>
+    );
 
-          <p class="text-gray-400 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed">
-            Профессиональное строительство и капитальный ремонт дорог любой технической сложности, высококачественное асфальтирование и благоустройство общественных пространств по всей Курганской области. Собственный сертифицированный парк техники.
-          </p>
+    const TreesIcon = ({ className = 'h-5 w-5' }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M10 10v.01" />
+        <path d="M9.5 6.1a5.25 5.25 0 0 0-2.24.78 4.5 4.5 0 0 0-.17 8.12M12 22V16" />
+        <path d="M16 16v-.01" />
+        <path d="M16.8 14.5a3.75 3.75 0 0 0 .5-6.9 4.5 4.5 0 0 0-6.2-4.1M16 22V15" />
+        <circle cx="8" cy="16" r="3" />
+        <circle cx="16" cy="12" r="3" />
+      </svg>
+    );
 
-          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-            <button onclick="switchTab('services')" class="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-slate-950 font-display font-black tracking-wide text-sm px-8 py-4 rounded-2xl transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg shadow-amber-500/25 flex items-center justify-center gap-2">
-              Наши услуги
-              <i data-lucide="arrow-right" class="h-4 w-4"></i>
-            </button>
-            <button onclick="switchTab('portfolio')" class="w-full sm:w-auto bg-white/5 hover:bg-white/10 text-white border border-white/15 hover:border-white/25 font-display font-bold tracking-wide text-sm px-8 py-4 rounded-2xl transition-all duration-300 backdrop-blur-xs flex items-center justify-center">
-              Галерея проектов
-            </button>
-          </div>
-        </div>
-      </section>
+    const SplineIcon = ({ className = 'h-5 w-5' }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="19" cy="5" r="2" />
+        <circle cx="5" cy="19" r="2" />
+        <path d="M5 17A12 12 0 0 1 17 5" />
+      </svg>
+    );
 
-      <!-- Галерея из 2 реальных тематических фото процессов -->
-      <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="group relative h-[320px] sm:h-[400px] rounded-3xl overflow-hidden shadow-md border border-gray-100 bg-slate-200">
-          <img src="https://images.unsplash.com/photo-1542224566-6e85f2e6772f?auto=format&fit=crop&w=1200&q=80" alt="Укладка дорожного покрытия" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/10 to-transparent flex flex-col justify-end p-6 sm:p-8">
-            <span class="text-amber-400 font-mono text-xs uppercase tracking-widest font-bold mb-1">Процесс асфальтирования</span>
-            <h3 class="text-white text-xl sm:text-2xl font-display font-black leading-tight">Профессиональная укладка асфальта</h3>
-            <p class="text-gray-300 text-sm mt-1 max-w-md">Строгий лабораторный контроль состава смеси, температурного режима и степени уплотнения покрытия.</p>
-          </div>
-        </div>
+    const WalletIcon = ({ className = 'h-5 w-5' }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" />
+        <path d="M3 5v14a2 2 0 0 0 2 2h16v-5" />
+        <path d="M18 12a2 2 0 0 0 0 4h4v-4Z" />
+      </svg>
+    );
 
-        <div class="group relative h-[320px] sm:h-[400px] rounded-3xl overflow-hidden shadow-md border border-gray-100 bg-slate-200">
-          <img src="https://images.unsplash.com/photo-1590069261209-f8e9b8642343?auto=format&fit=crop&w=1200&q=80" alt="Идеально гладкий асфальт" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/10 to-transparent flex flex-col justify-end p-6 sm:p-8">
-            <span class="text-amber-400 font-mono text-xs uppercase tracking-widest font-bold mb-1">Готовый объект</span>
-            <h3 class="text-white text-xl sm:text-2xl font-display font-black leading-tight">Проверенное временем качество покрытия</h3>
-            <p class="text-gray-300 text-sm mt-1 max-w-md">Долговечные городские магистрали, тротуары и площади с гарантией безаварийной эксплуатации до 5 лет.</p>
-          </div>
-        </div>
-      </section>
+    const FileCheckIcon = ({ className = 'h-5 w-5' }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+        <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+        <path d="m9 15 2 2 4-4" />
+      </svg>
+    );
 
-      <!-- Блок: "Почему выбирают нашу компанию" (Согласно скриншоту) -->
-      <section class="bg-white border border-gray-100 rounded-3xl p-8 sm:p-12 shadow-xs">
-        <div class="text-center mb-12 sm:mb-16">
-          <h2 class="font-display font-black text-3xl sm:text-4xl text-slate-900 tracking-tight">
-            Почему выбирают нашу компанию
-          </h2>
-          <div class="h-1.5 w-20 bg-amber-500 mx-auto mt-4 rounded-full"></div>
-        </div>
+    const StarIcon = ({ className = 'h-5 w-5' }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+      </svg>
+    );
 
-        <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-200">
-          <!-- Честная цена -->
-          <div class="flex flex-col items-center text-center px-4 py-8 md:py-4 first:pt-0 last:pb-0 md:first:pl-0 md:last:pr-0">
-            <div class="h-20 w-20 rounded-full border border-gray-200 bg-gray-50 flex items-center justify-center mb-6">
-              <i data-lucide="wallet" class="h-10 w-10 text-slate-800"></i>
-            </div>
-            <h3 class="font-display font-black text-xl text-slate-900 mb-4 tracking-tight">Честная цена</h3>
-            <p class="text-gray-600 text-sm max-w-xs leading-relaxed">
-              Мы — конечные непосредственные исполнители, а не звено в цепочке посредников. Обращаясь к нам напрямую, вы гарантированно не переплачиваете.
-            </p>
-          </div>
+    const CalendarIcon = ({ className = 'h-5 w-5' }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect width="18" height="18" x="3" y="4" rx="2" />
+        <line x1="16" x2="16" y1="2" y2="6" />
+        <line x1="8" x2="8" y1="2" y2="6" />
+        <line x1="3" x2="21" y1="10" y2="10" />
+      </svg>
+    );
 
-          <!-- Свой штат и спецтехника -->
-          <div class="flex flex-col items-center text-center px-4 py-8 md:py-4 md:first:pl-0 md:last:pr-0">
-            <div class="h-20 w-20 rounded-full border border-gray-200 bg-gray-50 flex items-center justify-center mb-6">
-              <i data-lucide="truck" class="h-10 w-10 text-slate-800"></i>
-            </div>
-            <h3 class="font-display font-black text-xl text-slate-900 mb-4 tracking-tight">Собственный штат и спецтехника</h3>
-            <p class="text-gray-600 text-sm max-w-xs leading-relaxed">
-              В штате компании 26 высококвалифицированных специалистов. Располагаем личным современным автопарком, что позволяет запустить производство мгновенно.
-            </p>
-          </div>
+    const ArrowRightIcon = ({ className = 'h-5 w-5' }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M5 12h14" />
+        <path d="m12 5 7 7-7 7" />
+      </svg>
+    );
 
-          <!-- Договор и гарантия -->
-          <div class="flex flex-col items-center text-center px-4 py-8 md:py-4 last:pb-0 md:first:pl-0 md:last:pr-0">
-            <div class="h-20 w-20 rounded-full border border-gray-200 bg-gray-50 flex items-center justify-center mb-6">
-              <i data-lucide="file-check" class="h-10 w-10 text-slate-800"></i>
-            </div>
-            <h3 class="font-display font-black text-xl text-slate-900 mb-4 tracking-tight">Гарантия до 5 лет и договор</h3>
-            <p class="text-gray-600 text-sm max-w-xs leading-relaxed">
-              Работаем открыто по официальному договору. Строго соблюдаем требования ГОСТ и СНиП, предоставляя твердую долгосрочную гарантию.
-            </p>
-          </div>
-        </div>
-      </section>
+    const EyeIcon = ({ className = 'h-5 w-5' }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0z" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>
+    );
 
-      <!-- Быстрая статистика -->
-      <section class="bg-slate-900 rounded-3xl p-8 sm:p-12 text-white">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div>
-            <p class="text-4xl sm:text-5xl font-display font-black text-amber-500">12+</p>
-            <p class="text-gray-400 text-xs sm:text-sm font-bold uppercase tracking-wider mt-2">Лет опыта работы</p>
-          </div>
-          <div>
-            <p class="text-4xl sm:text-5xl font-display font-black text-amber-500">450+</p>
-            <p class="text-gray-400 text-xs sm:text-sm font-bold uppercase tracking-wider mt-2">Сданных объектов</p>
-          </div>
-          <div>
-            <p class="text-4xl sm:text-5xl font-display font-black text-amber-500">26 чел.</p>
-            <p class="text-gray-400 text-xs sm:text-sm font-bold uppercase tracking-wider mt-2">Специалистов в штате</p>
-          </div>
-          <div>
-            <p class="text-4xl sm:text-5xl font-display font-black text-amber-500">100%</p>
-            <p class="text-gray-400 text-xs sm:text-sm font-bold uppercase tracking-wider mt-2">Контроль ГОСТ качества</p>
-          </div>
-        </div>
-      </section>
-    </div>
+    const SendIcon = ({ className = 'h-5 w-5' }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="m22 2-7 20-4-9-9-4Z" />
+        <path d="M22 2 11 13" />
+      </svg>
+    );
 
-    <!-- Вкладка: УСЛУГИ (SERVICES) -->
-    <div id="tab-services" class="tab-content space-y-12">
-      <div class="text-center max-w-3xl mx-auto space-y-4">
-        <h2 class="font-display font-black text-3xl sm:text-4xl text-slate-900 tracking-tight">
-          Наши дорожно-строительные услуги
-        </h2>
-        <p class="text-gray-600 max-w-2xl mx-auto text-base">
-          Оказываем комплексный перечень квалифицированных услуг от подготовительных ландшафтных изысканий до финальной сдаче дороги «под ключ».
-        </p>
-        <div class="h-1.5 w-20 bg-amber-500 mx-auto rounded-full"></div>
-      </div>
+    const ShieldCheckIcon = ({ className = 'h-5 w-5' }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M20 13c0 5-3.5 7.5-7.66 9.7a1 1 0 0 1-.68 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 .76-.97l8-2a1 1 0 0 1 .48 0l8 2A1 1 0 0 1 20 6v7z" />
+        <path d="m9 12 2 2 4-4" />
+      </svg>
+    );
 
-      <!-- Интерактивная панель услуг -->
-      <div class="relative min-h-[500px] lg:min-h-[600px] bg-slate-950 rounded-3xl overflow-hidden shadow-2xl border border-slate-900 grid grid-cols-1 lg:grid-cols-12">
-        <!-- Блок изображения услуги на десктопе -->
-        <div class="relative h-64 lg:h-full lg:col-span-5 overflow-hidden border-b lg:border-b-0 lg:border-r border-slate-800">
-          <img id="service-showcase-img" src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80" alt="Услуга" class="w-full h-full object-cover brightness-50 transition-all duration-300">
-          
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent lg:hidden"></div>
-          <div class="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-slate-950/80 hidden lg:block"></div>
-          
-          <div class="absolute bottom-6 left-6 right-6 text-white space-y-2 z-10 hidden sm:block">
-            <span class="text-[10px] font-mono font-bold bg-amber-500 text-slate-950 px-3 py-1 rounded-full uppercase tracking-wider">
-              Высокий стандарт качества
-            </span>
-            <h4 id="service-showcase-title" class="text-xl font-display font-black tracking-tight">Строительство дорог</h4>
-          </div>
-        </div>
+    const XIcon = ({ className = 'h-5 w-5' }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M18 6 6 18" />
+        <path d="m6 6 12 12" />
+      </svg>
+    );
 
-        <!-- Контейнер со списком услуг и описанием -->
-        <div class="p-6 sm:p-10 lg:col-span-7 bg-slate-950 flex flex-col justify-between space-y-8">
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 lg:gap-3">
-            <!-- Элемент меню 1 -->
-            <button onclick="selectService('road-construction')" id="srv-road-construction" class="service-selector-btn text-left px-5 py-3.5 rounded-xl border border-amber-500 bg-amber-500 text-slate-950 flex items-center justify-between transition-all font-display font-bold text-sm">
-              <span class="flex items-center gap-3">
-                <i data-lucide="hammer" class="h-4.5 w-4.5 shrink-0"></i>
-                Строительство дорог
-              </span>
-              <i data-lucide="arrow-right" class="h-4 w-4"></i>
-            </button>
-            <!-- Элемент меню 2 -->
-            <button onclick="selectService('road-paving')" id="srv-road-paving" class="service-selector-btn text-left px-5 py-3.5 rounded-xl border border-white/5 bg-slate-900/40 text-slate-300 hover:border-white/10 hover:bg-slate-900 transition-all font-display font-bold text-sm">
-              <span class="flex items-center gap-3">
-                <i data-lucide="flame" class="h-4.5 w-4.5 text-amber-500 shrink-0"></i>
-                Асфальтирование
-              </span>
-              <i data-lucide="arrow-right" class="h-4 w-4 opacity-0 transition-opacity"></i>
-            </button>
-            <!-- Элемент меню 3 -->
-            <button onclick="selectService('earthworks')" id="srv-earthworks" class="service-selector-btn text-left px-5 py-3.5 rounded-xl border border-white/5 bg-slate-900/40 text-slate-300 hover:border-white/10 hover:bg-slate-900 transition-all font-display font-bold text-sm">
-              <span class="flex items-center gap-3">
-                <i data-lucide="truck" class="h-4.5 w-4.5 text-amber-500 shrink-0"></i>
-                Земляные работы
-              </span>
-              <i data-lucide="arrow-right" class="h-4 w-4 opacity-0 transition-opacity"></i>
-            </button>
-            <!-- Элемент меню 4 -->
-            <button onclick="selectService('curbs')" id="srv-curbs" class="service-selector-btn text-left px-5 py-3.5 rounded-xl border border-white/5 bg-slate-900/40 text-slate-300 hover:border-white/10 hover:bg-slate-900 transition-all font-display font-bold text-sm">
-              <span class="flex items-center gap-3">
-                <i data-lucide="layers" class="h-4.5 w-4.5 text-amber-500 shrink-0"></i>
-                Установка бортового камня
-              </span>
-              <i data-lucide="arrow-right" class="h-4 w-4 opacity-0 transition-opacity"></i>
-            </button>
-            <!-- Элемент меню 5 -->
-            <button onclick="selectService('landscaping')" id="srv-landscaping" class="service-selector-btn text-left px-5 py-3.5 rounded-xl border border-white/5 bg-slate-900/40 text-slate-300 hover:border-white/10 hover:bg-slate-900 transition-all font-display font-bold text-sm">
-              <span class="flex items-center gap-3">
-                <i data-lucide="trees" class="h-4.5 w-4.5 text-amber-500 shrink-0"></i>
-                Благоустройство
-              </span>
-              <i data-lucide="arrow-right" class="h-4 w-4 opacity-0 transition-opacity"></i>
-            </button>
-          </div>
+    const MenuIcon = ({ className = 'h-5 w-5' }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="4" x2="20" y1="12" y2="12" />
+        <line x1="4" x2="20" y1="6" y2="6" />
+        <line x1="4" x2="20" y1="18" y2="18" />
+      </svg>
+    );
 
-          <!-- Текстовое описание активной услуги -->
-          <div class="bg-slate-900 border border-white/5 rounded-2xl p-6 text-white space-y-4">
-            <h4 id="service-desc-title" class="font-display font-black text-lg text-amber-500">Строительство дорог</h4>
-            <p id="service-desc-text" class="text-slate-300 text-sm leading-relaxed">
-              Проектирование и сооружение дорог общего пользования всех технических категорий, укладка песчано-гравия и щебеночного основания, распределение слоев дорожной одежды.
-            </p>
-            <div class="border-t border-white/5 pt-3 flex items-center justify-between text-xs text-gray-500 font-mono">
-              <span>Стандарт: ГОСТ, СНиП</span>
-              <a href="#callback-form-box" onclick="scrollToCallback()" class="text-amber-500 hover:underline">Рассчитать стоимость</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    const CheckCircle2Icon = ({ className = 'h-5 w-5' }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <path d="m9 12 2 2 4-4" />
+      </svg>
+    );
 
-    <!-- Вкладка: НАШИ РАБОТЫ (PORTFOLIO) -->
-    <div id="tab-portfolio" class="tab-content space-y-12">
-      <div class="text-center max-w-3xl mx-auto space-y-4">
-        <h2 class="font-display font-black text-3xl sm:text-4xl text-slate-900 tracking-tight">
-          Портфолио выполненных проектов
-        </h2>
-        <p class="text-gray-600 max-w-2xl mx-auto text-base">
-          Мы гордимся каждым сданным объектом. Все работы ведутся квалифицированными бригадами с использованием собственной надежной техники.
-        </p>
-        <div class="h-1.5 w-20 bg-amber-500 mx-auto rounded-full"></div>
-      </div>
+    // Вспомогательный компонент для динамического вызова иконки по текстовому имени
+    function LucideIcon({ name, className = "" }) {
+      switch (name) {
+        case "Hammer": return <HammerIcon className={className} />;
+        case "Phone": return <PhoneIcon className={className} />;
+        case "Truck": return <TruckIcon className={className} />;
+        case "Layers": return <LayersIcon className={className} />;
+        case "Trees": return <TreesIcon className={className} />;
+        case "Spline": return <SplineIcon className={className} />;
+        case "Wallet": return <WalletIcon className={className} />;
+        case "FileCheck": return <FileCheckIcon className={className} />;
+        case "Wrench": return <HammerIcon className={className} />; // Fallback
+        case "Activity": return <ShieldCheckIcon className={className} />; // Fallback
+        default: return <HammerIcon className={className} />;
+      }
+    }
 
-      <!-- Кнопки Фильтрации -->
-      <div class="flex flex-wrap justify-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-        <button onclick="filterPortfolio('all')" id="filter-all" class="portfolio-filter-btn px-5 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm uppercase tracking-wide transition-all border bg-slate-905 text-amber-400 bg-slate-900 border-slate-900">
-          Все проекты
-        </button>
-        <button onclick="filterPortfolio('road')" id="filter-road" class="portfolio-filter-btn px-5 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm uppercase tracking-wide transition-all border bg-white text-slate-600 border-gray-200 hover:bg-gray-50">
-          Строительство дорог
-        </button>
-        <button onclick="filterPortfolio('pave')" id="filter-pave" class="portfolio-filter-btn px-5 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm uppercase tracking-wide transition-all border bg-white text-slate-600 border-gray-200 hover:bg-gray-50">
-          Асфальтирование
-        </button>
-        <button onclick="filterPortfolio('land')" id="filter-land" class="portfolio-filter-btn px-5 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm uppercase tracking-wide transition-all border bg-white text-slate-600 border-gray-200 hover:bg-gray-50">
-          Благоустройство
-        </button>
-        <button onclick="filterPortfolio('earth')" id="filter-earth" class="portfolio-filter-btn px-5 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm uppercase tracking-wide transition-all border bg-white text-slate-600 border-gray-200 hover:bg-gray-50">
-          Земляные работы
-        </button>
-      </div>
 
-      <!-- Сетка портфолио -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="portfolio-container">
-        
-        <!-- Карточка 1 -->
-        <div class="portfolio-item-card bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300" data-category="road">
-          <div class="relative h-64 sm:h-72 bg-slate-100">
-            <img src="https://images.unsplash.com/photo-1542224566-6e85f2e6772f?auto=format&fit=crop&w=1200&q=80" alt="Иртыш" class="w-full h-full object-cover">
-            <span class="absolute top-4 left-4 bg-slate-950/90 text-amber-500 text-[10px] uppercase font-bold tracking-wider px-3.5 py-1.5 rounded-full border border-white/5">
-              Строительство дорог
-            </span>
-          </div>
-          <div class="p-6 sm:p-8 space-y-6">
-            <h3 class="font-display font-black text-xl text-slate-900">Реконструкция трассы Р-254 «Иртыш»</h3>
-            <p class="text-gray-600 text-sm">Устройство многослойного прочного основания, укладка модифицированного щебеночно-мастичного асфальтобетона (ЩМА), обустройство обочин, установка сигнальных столбиков.</p>
-            <div class="grid grid-cols-3 gap-2 pt-4 border-t border-gray-100 text-xs font-mono text-gray-500">
-              <div>
-                <span class="block text-[9px] uppercase font-bold text-gray-400">Локация</span>
-                <span class="text-slate-800 font-sans font-semibold">Курганская область</span>
-              </div>
-              <div>
-                <span class="block text-[9px] uppercase font-bold text-gray-400">Сдан в</span>
-                <span class="text-slate-800 font-sans font-semibold">2025 г.</span>
-              </div>
-              <div>
-                <span class="block text-[9px] uppercase font-bold text-gray-400">Площадь</span>
-                <span class="text-slate-800 font-sans font-semibold">42 000 кв. м</span>
-              </div>
-            </div>
-          </div>
-        </div>
+    // --- СТАТИЧЕСКИЕ ДАННЫЕ ПРИЛОЖЕНИЯ ---
+    const SERVICES_DATA = [
+      {
+        id: "road-construction",
+        title: "Строительство дорог",
+        description: "Проектирование и сооружение дорог общего пользования всех технических категорий, укладка песчано-гравийного и щебеночного основания, распределение слоев дорожной одежды.",
+        iconName: "Hammer",
+        imageUrl: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: "road-paving",
+        title: "Асфальтирование дорог и тротуаров",
+        description: "Высококлассная укладка асфальтобетонной смеси любой плотности и типа. Устройство новых и капитальный ремонт изношенных покрытий с бесшовным примыканием.",
+        iconName: "Hammer",
+        imageUrl: "https://images.unsplash.com/photo-1590069261209-f8e9b8642343?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: "earthworks",
+        title: "Земляные работы",
+        description: "Комплексная планировка строительного участка, перемещение и выравнивание грунтов, подготовка земляного полотна, уплотнение тяжелой катковой техникой.",
+        iconName: "Truck",
+        imageUrl: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: "curb-installation",
+        title: "Установка бортового камня",
+        description: "Монтаж дорожных и тротуарных бордюров (бортовых камней) строго по отметкам нивелира на прочное бетонное основание с устройством замка.",
+        iconName: "Layers",
+        imageUrl: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: "landscaping",
+        title: "Благоустройство территорий и парков",
+        description: "Комплексное озеленение общественных пространств, мощение тротуарной плиткой (брусчаткой), обустройство пешеходных дорожек, эко-троп и аллей.",
+        iconName: "Trees",
+        imageUrl: "https://images.unsplash.com/photo-1584467541268-b040f83be3fd?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: "excavation",
+        title: "Разработка котлована",
+        description: "Геодезическая разбивка осей, выемка больших объемов грунта экскаваторами, вывоз и последующая безопасная утилизация с предоставлением талонов.",
+        iconName: "Activity",
+        imageUrl: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: "road-marking",
+        title: "Дорожная разметка",
+        description: "Нанесение стойкой дорожной горизонтальной разметки износостойкими эмалями и горячим/холодным пластиком со световозвращающими микростеклошариками.",
+        iconName: "Spline",
+        imageUrl: "https://images.unsplash.com/photo-1515162305285-0293e4767cc2?auto=format&fit=crop&w=800&q=80"
+      }
+    ];
 
-        <!-- Карточка 2 -->
-        <div class="portfolio-item-card bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300" data-category="pave">
-          <div class="relative h-64 sm:h-72 bg-slate-100">
-            <img src="https://images.unsplash.com/photo-1590069261209-f8e9b8642343?auto=format&fit=crop&w=1200&q=80" alt="Ремонт дорог" class="w-full h-full object-cover">
-            <span class="absolute top-4 left-4 bg-slate-950/90 text-amber-500 text-[10px] uppercase font-bold tracking-wider px-3.5 py-1.5 rounded-full border border-white/5">
-              Асфальтирование
-            </span>
-          </div>
-          <div class="p-6 sm:p-8 space-y-6">
-            <h3 class="font-display font-black text-xl text-slate-900">Капитальный ремонт улиц Савельева и Коли Мяготина</h3>
-            <p class="text-gray-600 text-sm">Фрезерование старого изношенного дорожного палатна, устранение дефектов основания, укладка двух слоев износостойкой асфальтовой смеси и замена бортовых камней.</p>
-            <div class="grid grid-cols-3 gap-2 pt-4 border-t border-gray-100 text-xs font-mono text-gray-500">
-              <div>
-                <span class="block text-[9px] uppercase font-bold text-gray-400">Локация</span>
-                <span class="text-slate-800 font-sans font-semibold">г. Курган</span>
-              </div>
-              <div>
-                <span class="block text-[9px] uppercase font-bold text-gray-400">Сдан в</span>
-                <span class="text-slate-800 font-sans font-semibold">2025 г.</span>
-              </div>
-              <div>
-                <span class="block text-[9px] uppercase font-bold text-gray-400">Площадь</span>
-                <span class="text-slate-800 font-sans font-semibold">24 500 кв. м</span>
-              </div>
-            </div>
-          </div>
-        </div>
+    const PORTFOLIO_DATA = [
+      {
+        id: "port-1",
+        title: "Реконструкция участков федеральной трассы Р-254 «Иртыш»",
+        category: "Строительство дорог",
+        description: "Устройство многослойного прочного основания, укладка модифицированного щебеночно-мастичного асфальтобетона (ЩМА), обустройство обочин, установка сигнальных столбиков и нанесение термопластиковой горизонтальной разметки.",
+        location: "Курганская область",
+        year: "2025 г.",
+        area: "42 000 кв. м",
+        imageUrl: "https://images.unsplash.com/photo-1542224566-6e85f2e6772f?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        id: "port-2",
+        title: "Капитальный ремонт дорог по улицам Савельева и Коли Мяготина",
+        category: "Асфальтирование",
+        description: "Фрезерование изноженного дорожного полотна, выравнивание деформационных дефектов, укладка двух слоев прочной асфальтобетонной смеси и полная замена бортового камня на гранитный аналог.",
+        location: "г. Курган",
+        year: "2025 г.",
+        area: "24 500 кв. м",
+        imageUrl: "https://images.unsplash.com/photo-1590069261209-f8e9b8642343?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        id: "port-3",
+        title: "Благоустройство сквера Победы и ландшафтного парка",
+        category: "Благоустройство территорий",
+        description: "Снятие старого деформированного покрытия, планировка территории, укладка фигурной тротуарной плитки на пешеходных дорожках, создание искусственных микрорельефов парка и посадка зеленых насаждений.",
+        location: "г. Шадринск, Курганская обл.",
+        year: "2024 г.",
+        area: "14 800 кв. м",
+        imageUrl: "https://images.unsplash.com/photo-1584467541268-b040f83be3fd?auto=format&fit=crop&w=1200&q=80"
+      },
+      {
+        id: "port-4",
+        title: "Разработка котлована под фундамент жилого комплекса по ул. Климова",
+        category: "Земляные работы",
+        description: "Комплексная геодезическая разбивка, послойная выемка грунта экскаваторами объемом свыше 45 000 м3, погрузка и вывоз грунта на сертифицированные полигоны утилизации собственными самосвалами.",
+        location: "г. Курган",
+        year: "2024 г.",
+        area: "18 000 кв. м",
+        imageUrl: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=80"
+      }
+    ];
 
-        <!-- Карточка 3 -->
-        <div class="portfolio-item-card bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300" data-category="land">
-          <div class="relative h-64 sm:h-72 bg-slate-100">
-            <img src="https://images.unsplash.com/photo-1584467541268-b040f83be3fd?auto=format&fit=crop&w=1200&q=80" alt="Парк" class="w-full h-full object-cover">
-            <span class="absolute top-4 left-4 bg-slate-950/90 text-amber-500 text-[10px] uppercase font-bold tracking-wider px-3.5 py-1.5 rounded-full border border-white/5">
-              Благоустройство
-            </span>
-          </div>
-          <div class="p-6 sm:p-8 space-y-6">
-            <h3 class="font-display font-black text-xl text-slate-900">Благоустройство сквера Победы и ландшафтного парка</h3>
-            <p class="text-gray-600 text-sm">Планировка территории под пешеходные маршруты, мощение фигурной тротуарной плиткой, установка бортового бордюра, посев газона и создание искусственного рельефа.</p>
-            <div class="grid grid-cols-3 gap-2 pt-4 border-t border-gray-100 text-xs font-mono text-gray-500">
-              <div>
-                <span class="block text-[9px] uppercase font-bold text-gray-400">Локация</span>
-                <span class="text-slate-800 font-sans font-semibold">г. Шадринск</span>
-              </div>
-              <div>
-                <span class="block text-[9px] uppercase font-bold text-gray-400">Сдан в</span>
-                <span class="text-slate-800 font-sans font-semibold">2024 г.</span>
-              </div>
-              <div>
-                <span class="block text-[9px] uppercase font-bold text-gray-400">Площадь</span>
-                <span class="text-slate-800 font-sans font-semibold">14 800 кв. м</span>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <!-- Карточка 4 -->
-        <div class="portfolio-item-card bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300" data-category="earth">
-          <div class="relative h-64 sm:h-72 bg-slate-100">
-            <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=80" alt="Котлован" class="w-full h-full object-cover">
-            <span class="absolute top-4 left-4 bg-slate-950/90 text-amber-500 text-[10px] uppercase font-bold tracking-wider px-3.5 py-1.5 rounded-full border border-white/5">
-              Земляные работы
-            </span>
-          </div>
-          <div class="p-6 sm:p-8 space-y-6">
-            <h3 class="font-display font-black text-xl text-slate-900">Котлован под жилищный квартал по ул. Климова</h3>
-            <p class="text-gray-600 text-sm">Геодезическая разбивка осей фундамента, послойная выемка грунта объемом свыше 45 000 кубических метров, оперативная утилизация с предоставлением официальных талонов.</p>
-            <div class="grid grid-cols-3 gap-2 pt-4 border-t border-gray-100 text-xs font-mono text-gray-500">
-              <div>
-                <span class="block text-[9px] uppercase font-bold text-gray-400">Локация</span>
-                <span class="text-slate-800 font-sans font-semibold">г. Курган</span>
-              </div>
-              <div>
-                <span class="block text-[9px] uppercase font-bold text-gray-400">Сдан в</span>
-                <span class="text-slate-800 font-sans font-semibold">2024 г.</span>
-              </div>
-              <div>
-                <span class="block text-[9px] uppercase font-bold text-gray-400">Объем</span>
-                <span class="text-slate-800 font-sans font-semibold">45 000 м³</span>
-              </div>
-            </div>
-          </div>
-        </div>
+    // --- ШАПКА САЙТА (HEADER) ---
+    function Header({ activeTab, setActiveTab }) {
+      const [isOpen, setIsOpen] = useState(false);
 
-      </div>
-    </div>
+      const navigationItems = [
+        { id: "about", label: "О компании" },
+        { id: "services", label: "Услуги" },
+        { id: "portfolio", label: "Наши работы" },
+        { id: "contacts", label: "Контакты" },
+      ];
 
-    <!-- Вкладка: КОНТАКТЫ (CONTACTS) -->
-    <div id="tab-contacts" class="tab-content space-y-12">
-      <div class="text-center max-w-3xl mx-auto space-y-4">
-        <h2 class="font-display font-black text-3xl sm:text-4xl text-slate-900 tracking-tight">
-          Контактная информация ООО «ЭЛЬБРУС»
-        </h2>
-        <p class="text-gray-600 max-w-2xl mx-auto text-base">
-          Мы всегда на связи и готовы проконсультировать вас по любым дорожным, производственным и благоустроительным вопросам.
-        </p>
-        <div class="h-1.5 w-20 bg-amber-500 mx-auto rounded-full"></div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-        <!-- Блок слева -->
-        <div class="bg-white border border-gray-100 rounded-3xl p-8 sm:p-10 shadow-xs space-y-8 flex flex-col justify-between">
-          <div class="space-y-6">
-            <h3 class="font-display font-black text-2xl text-slate-900">Административный офис</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">
-              Координируем дорожно-строительные работы по Курганской области. Располагаем собственным штатом из 26 высококвалифицированных специалистов и широким спектром современной дорожной спецтехники для укладки, разметки и земляных работ.
-            </p>
-          </div>
-
-          <div class="space-y-4">
-            <div class="flex items-center space-x-3 text-slate-700">
-              <i data-lucide="map-pin" class="h-5 w-5 text-amber-500"></i>
-              <span>640022, Курганская обл., г. Курган, ул. Савельева, д. 58, кв. 33</span>
-            </div>
-            <div class="flex items-center space-x-3 text-slate-700">
-              <i data-lucide="phone" class="h-5 w-5 text-amber-500"></i>
-              <span class="font-semibold">+7 (3522) 55-04-76</span>
-            </div>
-          </div>
-
-          <div class="bg-amber-500/10 border border-amber-500/15 p-5 rounded-2xl flex items-start space-x-3">
-            <i data-lucide="truck" class="h-6 w-6 text-amber-600 mt-0.5 shrink-0"></i>
-            <div>
-              <span class="block font-display font-bold text-slate-900 text-sm">Бесплатный выезд инженера</span>
-              <span class="block text-slate-700 text-xs mt-1">
-                Специалист оперативно приедет на ваш объект для качественного проведения замеров и составления сметы абсолютно бесплатно по всей Курганской области.
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Географическая зона (Имитация интерактивной карты с фоном застройки) -->
-        <div class="bg-slate-900 rounded-3xl p-8 sm:p-10 shadow-xs text-white flex flex-col justify-between relative overflow-hidden min-h-[350px]">
-          <div class="absolute inset-0 bg-cover bg-center brightness-35" style="background-image: url('https://images.unsplash.com/photo-1542224566-6e85f2e6772f?auto=format&fit=crop&w=1200&q=80')"></div>
-          
-          <div class="relative z-10 space-y-6">
-            <span class="text-[10px] bg-amber-500/20 text-amber-400 font-mono font-bold border border-amber-500/20 px-3.5 py-1.5 rounded-full uppercase tracking-wider">
-              Производственные мощности
-            </span>
-            <h3 class="font-display font-black text-2xl sm:text-3xl text-white tracking-tight leading-tight">
-              Базы техники размещены в гг. Курган и Шадринск
-            </h3>
-            <p class="text-gray-300 text-sm leading-relaxed max-w-sm">
-              Локальное присутствие гарантирует высокую скорость доставки щебня/песка, оперативное прибытие бригад и готовность катков к укладке без задержек.
-            </p>
-          </div>
-
-          <div class="relative z-10 pt-6">
-            <button onclick="scrollToCallback()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-display font-black text-xs uppercase tracking-widest px-6 py-3.5 rounded-xl transition-all shadow-md">
-              Связаться с технологом
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </main>
-
-  <!-- ПОДВАЛ И ФОРМА (FOOTER + CALLBACK) -->
-  <footer class="bg-slate-950 text-gray-400 font-sans pt-16 pb-8 border-t border-slate-900 rounded-t-[40px] mt-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-      
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-        <!-- Левый блок подвала: Контакты и Описание -->
-        <div class="lg:col-span-5 space-y-8">
-          <div class="space-y-4">
-            <div class="flex items-center space-x-3">
-              <div class="bg-amber-500 text-slate-950 p-2 rounded-lg">
-                <i data-lucide="hammer" class="h-5 w-5"></i>
-              </div>
-              <span class="font-display font-black text-xl sm:text-2xl text-white tracking-tight">ЭЛЬБРУС</span>
-            </div>
-            <p class="text-gray-400 text-sm leading-relaxed max-w-sm">
-              Профессиональные услуги дорожного строительства, качественного асфальтирования, благоустройства общественных пространств по государственным стандартам Курганской области.
-            </p>
-          </div>
-
-          <div class="space-y-4 pt-2">
-            <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider">Контакты компании</h4>
-            
-            <div class="space-y-3.5">
-              <a href="tel:+73522550476" class="flex items-start space-x-3.5 group text-sm md:text-base hover:text-white transition-colors">
-                <i data-lucide="phone" class="h-5 w-5 text-amber-500 shrink-0 mt-0.5"></i>
+      return (
+        <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all duration-300">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center h-20 sm:h-24">
+              
+              {/* Логотип */}
+              <div 
+                className="flex items-center space-x-3 cursor-pointer group"
+                onClick={() => setActiveTab("about")}
+              >
+                <div className="bg-amber-500 text-slate-900 p-2.5 rounded-xl shadow-md group-hover:bg-amber-600 transition-colors">
+                  <HammerIcon className="h-6 sm:h-7 w-6 sm:w-7" />
+                </div>
                 <div>
-                  <span class="block font-semibold text-white font-display">+7 (3522) 55-04-76</span>
-                  <span class="text-xs text-gray-500">Прием звонков и консультации</span>
-                </div>
-              </a>
-
-              <div class="flex items-start space-x-3.5 text-sm md:text-base">
-                <i data-lucide="clock" class="h-5 w-5 text-amber-500 shrink-0 mt-0.5"></i>
-                <div>
-                  <span class="block font-semibold text-white font-display">Пн - Вс: 08:00 - 21:00</span>
-                  <span class="text-xs text-gray-500">Бригады работают круглосуточно по договору</span>
+                  <span className="block font-display font-black text-xl sm:text-2xl tracking-tight text-slate-900 group-hover:text-amber-600 transition-colors">
+                    ЭЛЬБРУС
+                  </span>
+                  <span className="block text-[10px] sm:text-xs font-mono uppercase tracking-[0.15em] text-slate-500 font-bold">
+                    производство и дорожное строительство
+                  </span>
                 </div>
               </div>
 
-              <a href="mailto:elbrus-kurgan@yandex.ru" class="flex items-start space-x-3.5 group text-sm md:text-base hover:text-white transition-colors">
-                <i data-lucide="mail" class="h-5 w-5 text-amber-500 shrink-0 mt-0.5"></i>
-                <div>
-                  <span class="block font-semibold text-white font-display">elbrus-kurgan@yandex.ru</span>
-                  <span class="text-xs text-gray-500">Для коммерческих предложений</span>
-                </div>
-              </a>
+              {/* Крупные и понятные кнопки навигации */}
+              <nav className="hidden md:flex items-center space-x-2 lg:space-x-4">
+                {navigationItems.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => setActiveTab(item.id)}
+                    className={`px-5 py-3 rounded-xl font-display font-bold text-sm tracking-wide uppercase transition-all duration-200 border-2 cursor-pointer ${
+                      activeTab === item.id
+                        ? "bg-slate-900 text-white border-slate-900 shadow-sm"
+                        : "bg-transparent text-slate-700 border-transparent hover:bg-slate-50 hover:text-slate-900 hover:border-slate-200"
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </nav>
 
-              <div class="flex items-start space-x-3.5 text-sm md:text-base">
-                <i data-lucide="map-pin" class="h-5 w-5 text-amber-500 shrink-0 mt-0.5"></i>
-                <div>
-                  <span class="block font-semibold text-white font-display">640022, г. Курган, ул. Савельева, д. 58, кв. 33</span>
-                  <span class="text-xs text-gray-500">Базы размещения техники Курган, Шадринск</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-slate-900 border border-white/5 rounded-2xl p-4 flex items-center space-x-4 max-w-sm">
-            <i data-lucide="shield-check" class="h-10 w-10 text-amber-500 shrink-0"></i>
-            <div>
-              <span class="block text-white font-display font-bold text-sm">СРО лицензия</span>
-              <span class="block text-xs text-gray-500">Полные юридические и технические допуски к дорожному строительству.</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Правый блок подвала: Форма обратной связи -->
-        <div id="callback-form-box" class="lg:col-span-7 bg-slate-900 border border-white/5 rounded-3xl p-6 sm:p-8 space-y-6">
-          <div class="space-y-1.5">
-            <h3 class="font-display font-black text-xl sm:text-2xl text-white">Заказ профессионального расчёта</h3>
-            <p class="text-gray-400 text-sm">Оставьте заявку на бесплатный выезд инженера на ваш объект для проведения изысканий и составления сметы.</p>
-          </div>
-
-          <!-- Контейнер формы -->
-          <div id="form-inner-container">
-            <form onsubmit="handleFormSubmit(event)" class="space-y-4 text-white">
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div class="space-y-1.5">
-                  <label class="text-xs font-mono uppercase tracking-wider text-gray-400 font-bold">Ваше имя <span class="text-amber-500">*</span></label>
-                  <input type="text" id="form-name" required placeholder="Иван" class="w-full bg-slate-950 border border-white/10 hover:border-amber-500/50 focus:border-amber-500 focus:outline-none rounded-xl px-4 py-3 placeholder-gray-600 text-sm text-white transition-colors">
-                </div>
-                <div class="space-y-1.5">
-                  <label class="text-xs font-mono uppercase tracking-wider text-gray-400 font-bold">Номер телефона <span class="text-amber-500">*</span></label>
-                  <input type="tel" id="form-phone" required placeholder="+7 (___) ___-__-__" class="w-full bg-slate-950 border border-white/10 hover:border-amber-500/50 focus:border-amber-500 focus:outline-none rounded-xl px-4 py-3 placeholder-gray-600 text-sm text-white transition-colors">
-                </div>
+              {/* Телефоны компании в шапке */}
+              <div className="hidden lg:flex items-center space-x-3">
+                <a 
+                  href="tel:+73522550476" 
+                  className="flex items-center space-x-2 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-5 py-3 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer"
+                >
+                  <PhoneIcon className="h-4 w-4" />
+                  <span className="font-display text-sm tracking-wide font-black">+7 (3522) 55-04-76</span>
+                </a>
               </div>
 
-              <div class="space-y-1.5">
-                <label class="text-xs font-mono uppercase tracking-wider text-gray-400 font-bold">Выберите тип услуги <span class="text-amber-500">*</span></label>
-                <select id="form-service" required class="w-full bg-slate-950 border border-white/10 hover:border-amber-500/50 focus:border-amber-500 focus:outline-none rounded-xl px-4 py-3 text-sm text-white transition-colors">
-                  <option value="" disabled selected>-- Выберите из списка --</option>
-                  <option value="Roads">Строительство дорог</option>
-                  <option value="Asphalt">Асфальтирование</option>
-                  <option value="Earth">Земляные работы</option>
-                  <option value="Stone">Установка бортового камня</option>
-                  <option value="Landscape">Благоустройство территорий</option>
-                </select>
-              </div>
-
-              <div class="space-y-1.5">
-                <label class="text-xs font-mono uppercase tracking-wider text-gray-400 font-bold">Размер площади / Описание</label>
-                <textarea id="form-comment" rows="3" placeholder="Ориентировочная площадь в кв.м. или особенности территории..." class="w-full bg-slate-950 border border-white/10 hover:border-amber-500/50 focus:border-amber-500 focus:outline-none rounded-xl px-4 py-2.5 text-sm text-white transition-colors"></textarea>
-              </div>
-
-              <div class="pt-2">
-                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-display font-black tracking-wide text-xs uppercase px-8 py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-amber-500/10">
-                  <i data-lucide="send" class="h-4 w-4"></i>
-                  Отправить заявку на замер
+              {/* Бургер-кнопка для мобильных устройств */}
+              <div className="md:hidden flex items-center">
+                <button
+                  onClick={() => setIsOpen(!isOpen)}
+                  className="p-2.5 rounded-xl bg-slate-50 text-slate-700 hover:bg-slate-100 hover:text-slate-900 focus:outline-none cursor-pointer"
+                >
+                  {isOpen ? <XIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
                 </button>
               </div>
 
-              <span class="block text-[10px] text-gray-500 leading-normal text-center">
-                Нажимая на кнопку «Отправить», вы соглашаетесь с условиями обработки персональных данных в соответствии с Федеральным законом № 152-ФЗ.
-              </span>
-            </form>
-          </div>
-
-          <!-- Блок успеха отправки формы (Скрыт по умолчанию) -->
-          <div id="form-success-container" class="hidden bg-emerald-950/40 border border-emerald-500/25 text-emerald-400 p-6 rounded-2xl space-y-4">
-            <div class="flex items-center space-x-3">
-              <div class="bg-emerald-500 text-slate-950 p-2 rounded-full font-bold">✓</div>
-              <h4 class="font-display font-bold text-lg">Заявка успешно отправлена!</h4>
             </div>
-            <p class="text-sm text-gray-300 leading-relaxed">
-              Наш ведущий инженер свяжется с вами по указанному телефону в самые кратчайшие сроки (обычно в течение 10–15 минут в рабочее время). Спасибо за доверие!
+          </div>
+
+          {/* Мобильное всплывающее меню */}
+          {isOpen && (
+            <div className="md:hidden bg-white border-b border-gray-100 py-4 px-4 space-y-2 animate-fadeIn">
+              {navigationItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => {
+                    setActiveTab(item.id);
+                    setIsOpen(false);
+                  }}
+                  className={`block w-full text-left px-5 py-3.5 rounded-xl font-display font-bold text-sm uppercase tracking-wide transition-all ${
+                    activeTab === item.id
+                      ? "bg-slate-900 text-white"
+                      : "bg-slate-50 text-slate-700 hover:bg-slate-100"
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+              <a
+                href="tel:+73522550476"
+                className="flex items-center justify-center space-x-2 w-full bg-amber-500 text-slate-900 font-bold px-5 py-3.5 rounded-xl text-center shadow-sm font-display"
+              >
+                <PhoneIcon className="h-4 w-4" />
+                <span className="text-sm tracking-wide font-black">+7 (3522) 55-04-76</span>
+              </a>
+            </div>
+          )}
+        </header>
+      );
+    }
+
+
+    // --- СТРАНИЦА «О КОМПАНИИ» (ABOUT) ---
+    function About({ onExploreServices, onExplorePortfolio }) {
+      return (
+        <div className="space-y-16 animate-fadeIn">
+          
+          {/* Главный Баннер компании (Hero) */}
+          <section className="relative bg-slate-900 rounded-3xl overflow-hidden shadow-2xl">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-amber-500/10 via-slate-950/95 to-slate-950 pointer-events-none z-0" />
+            
+            <div className="relative z-10 px-6 py-16 sm:py-20 md:py-24 max-w-5xl mx-auto text-center space-y-8">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-500 border border-amber-500/25 text-xs font-semibold tracking-wider uppercase">
+                <StarIcon className="h-3.5 w-3.5" />
+                Лидеры дорожного строительства
+              </div>
+
+              <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl text-white tracking-tight leading-tight">
+                Надёжные дороги для <span className="text-amber-500">будущего</span> поколения
+              </h1>
+
+              <p className="text-gray-400 text-lg sm:text-xl max-w-3xl mx-auto font-sans leading-relaxed">
+                Профессиональное строительство и капитальный ремонт дорог любой сложности, асфальтирование и благоустройство территорий по государственным стандартам ГОСТ. Собственный парк техники.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+                <button
+                  onClick={onExploreServices}
+                  className="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-slate-950 font-display font-black tracking-wide text-sm px-8 py-4.5 rounded-2xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg shadow-amber-500/25 flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  Наши услуги
+                  <ArrowRightIcon className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={onExplorePortfolio}
+                  className="w-full sm:w-auto bg-white/5 hover:bg-white/10 text-white border border-white/15 hover:border-white/25 font-display font-bold tracking-wide text-sm px-8 py-4.5 rounded-2xl transition-all duration-300 backdrop-blur-sm flex items-center justify-center cursor-pointer"
+                >
+                  Примеры работ
+                </button>
+              </div>
+            </div>
+          </section>
+
+          {/* Два красивых тематических фото (Требование по картинкам) */}
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="group relative h-[320px] sm:h-[400px] rounded-3xl overflow-hidden shadow-xl border border-gray-100">
+              <img 
+                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80" 
+                alt="Капитальная дорожная укладка"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/30 to-transparent flex flex-col justify-end p-6 sm:p-8">
+                <span className="text-amber-400 font-mono text-xs uppercase tracking-widest font-bold mb-1">Процесс укладки</span>
+                <h3 className="text-white text-xl sm:text-2xl font-display font-black leading-tight">Современное дорожное полотно</h3>
+                <p className="text-gray-300 text-sm mt-1 max-w-md">Строительство с прочным подготовленным щебёночным основанием и износостойким покрытием.</p>
+              </div>
+            </div>
+
+            <div className="group relative h-[320px] sm:h-[400px] rounded-3xl overflow-hidden shadow-xl border border-gray-100">
+              <img 
+                src="https://images.unsplash.com/photo-1590069261209-f8e9b8642343?auto=format&fit=crop&w=1200&q=80" 
+                alt="Высококачественное готовое покрытие"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/30 to-transparent flex flex-col justify-end p-6 sm:p-8">
+                <span className="text-amber-400 font-mono text-xs uppercase tracking-widest font-bold mb-1">Результат работ</span>
+                <h3 className="text-white text-xl sm:text-2xl font-display font-black leading-tight">Идеально ровный асфальтобетон</h3>
+                <p className="text-gray-300 text-sm mt-1 max-w-md">Долговечное покрытие тротуаров и городских магистралей с гарантией безупречной эксплуатации.</p>
+              </div>
+            </div>
+          </section>
+
+          {/* Блок преимуществ */}
+          <section className="bg-white border border-gray-100 rounded-3xl p-8 sm:p-12 shadow-sm">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="font-display font-black text-3xl sm:text-4xl text-slate-900 tracking-tight">
+                Почему выбирают нашу компанию
+              </h2>
+              <div className="h-1.5 w-20 bg-amber-500 mx-auto mt-4 rounded-full" />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+              {/* Преимущество 1 */}
+              <div className="flex flex-col items-center text-center px-4 py-8 md:py-4 first:pt-0 last:pb-0 md:first:pl-0 md:last:pr-0">
+                <div className="h-20 w-20 rounded-full border border-gray-200 bg-gray-50 flex items-center justify-center mb-6 shadow-sm">
+                  <WalletIcon className="h-10 w-10 text-slate-800" />
+                </div>
+                <h3 className="font-display font-black text-xl text-slate-900 mb-4 tracking-tight">Честная цена</h3>
+                <p className="text-gray-600 font-sans leading-relaxed text-sm max-w-sm">
+                  Мы — конечные исполнители, а не звено в цепочке подрядчиков. Обращаясь к нам за услугами, гарантируем, что вы не переплатите.
+                </p>
+              </div>
+
+              {/* Преимущество 2 */}
+              <div className="flex flex-col items-center text-center px-4 py-8 md:py-4 md:first:pl-0 md:last:pr-0">
+                <div className="h-20 w-20 rounded-full border border-gray-200 bg-gray-50 flex items-center justify-center mb-6 shadow-sm">
+                  <TruckIcon className="h-10 w-10 text-slate-800" />
+                </div>
+                <h3 className="font-display font-black text-xl text-slate-900 mb-4 tracking-tight">Свой парк техники</h3>
+                <p className="text-gray-600 font-sans leading-relaxed text-sm max-w-sm">
+                  Можем взяться за проект любой сложности в кратчайшие сроки, т.к. нам не требуется время на поиск необходимых ресурсов.
+                </p>
+              </div>
+
+              {/* Преимущество 3 */}
+              <div className="flex flex-col items-center text-center px-4 py-8 md:py-4 last:pb-0 md:first:pl-0 md:last:pr-0">
+                <div className="h-20 w-20 rounded-full border border-gray-200 bg-gray-50 flex items-center justify-center mb-6 shadow-sm">
+                  <FileCheckIcon className="h-10 w-10 text-slate-800" />
+                </div>
+                <h3 className="font-display font-black text-xl text-slate-900 mb-4 tracking-tight">Работа по договору</h3>
+                <p className="text-gray-600 font-sans leading-relaxed text-sm max-w-sm">
+                  Работаем на совесть: стараемся все делать надежно и долговечно. Предоставляем детальную пятилетнюю гарантию на все выполненные работы.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Быстрые цифры */}
+          <section className="bg-slate-900 rounded-3xl p-8 sm:p-12 text-white">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              <div className="space-y-2">
+                <p className="text-4xl sm:text-5xl font-display font-black text-amber-500">12+</p>
+                <p className="text-gray-400 text-xs sm:text-sm font-semibold uppercase tracking-wider font-display">Лет опыта работы</p>
+              </div>
+              <div className="space-y-2">
+                <p className="text-4xl sm:text-5xl font-display font-black text-amber-500">450+</p>
+                <p className="text-gray-400 text-xs sm:text-sm font-semibold uppercase tracking-wider font-display">Объектов сдано</p>
+              </div>
+              <div className="space-y-2">
+                <p className="text-4xl sm:text-5xl font-display font-black text-amber-500">35 ед.</p>
+                <p className="text-gray-400 text-xs sm:text-sm font-semibold uppercase tracking-wider font-display">Спецтехники</p>
+              </div>
+              <div className="space-y-2">
+                <p className="text-4xl sm:text-5xl font-display font-black text-amber-500">100%</p>
+                <p className="text-gray-400 text-xs sm:text-sm font-semibold uppercase tracking-wider font-display">Гарантия ГОСТ</p>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      );
+    }
+
+
+    // --- ИНТЕРАКТИВНЫЙ БЛОК УСЛУГ (SERVICES) ---
+    function Services() {
+      const [activeServiceId, setActiveServiceId] = useState(SERVICES_DATA[0].id);
+      const activeService = SERVICES_DATA.find((s) => s.id === activeServiceId) || SERVICES_DATA[0];
+
+      return (
+        <div className="space-y-12 animate-fadeIn">
+          <div className="text-center max-w-3xl mx-auto space-y-4">
+            <h2 className="font-display font-black text-3xl sm:text-4xl text-slate-900 tracking-tight">
+              Наши дорожно-строительные услуги
+            </h2>
+            <p className="text-gray-600 font-sans max-w-2xl mx-auto text-base">
+              Предлагаем полный цикл работ от проектирования и выемки грунта до финальной разметки готового полотна. Предоставляем спецтехнику, закупаем качественные материалы.
             </p>
-            <button onclick="resetQuoteForm()" class="text-emerald-400 hover:text-emerald-300 text-xs font-display font-bold uppercase tracking-wide">
-              Отправить ещё одну заявку
-            </button>
+            <div className="h-1.5 w-20 bg-amber-500 mx-auto rounded-full" />
+          </div>
+
+          <div className="relative bg-slate-950 rounded-3xl overflow-hidden shadow-2xl border border-slate-900 grid grid-cols-1 lg:grid-cols-12 min-h-[500px] lg:min-h-[580px]">
+            {/* Левый блок с динамическим фоновым изображением */}
+            <div className="relative h-64 lg:h-full lg:col-span-5 overflow-hidden border-b lg:border-b-0 lg:border-r border-slate-800">
+              <img
+                src={activeService.imageUrl}
+                alt={activeService.title}
+                className="w-full h-full object-cover brightness-50 transition-all duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent lg:hidden" />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-slate-950/80 hidden lg:block" />
+
+              <div className="absolute bottom-6 left-6 right-6 text-white space-y-2 z-10 hidden sm:block">
+                <span className="text-[10px] font-mono font-bold bg-amber-500 text-slate-950 px-3 py-1 rounded-full uppercase tracking-wider">
+                  Высокий стандарт качества
+                </span>
+                <h4 className="text-xl font-display font-black tracking-tight">{activeService.title}</h4>
+              </div>
+            </div>
+
+            {/* Правый интерактивный список услуг */}
+            <div className="p-6 sm:p-10 lg:col-span-7 bg-slate-950 flex flex-col md:grid md:grid-cols-2 gap-8 items-start">
+              
+              {/* Левый список выбора услуг */}
+              <div className="space-y-1.5 w-full">
+                <span className="block text-amber-500 font-mono text-[10px] uppercase font-bold tracking-widest pl-2 mb-3">
+                  Виды проводимых работ:
+                </span>
+                <div className="space-y-1.5">
+                  {SERVICES_DATA.map((service) => (
+                    <button
+                      key={service.id}
+                      onClick={() => setActiveServiceId(service.id)}
+                      onMouseEnter={() => setActiveServiceId(service.id)}
+                      className={`w-full flex items-center justify-between text-left px-5 py-4 rounded-2xl font-display font-bold text-sm tracking-wide transition-all border cursor-pointer ${
+                        activeServiceId === service.id
+                          ? "bg-amber-500 text-slate-950 border-amber-500 translate-x-1"
+                          : "bg-slate-900/40 text-slate-300 border-white/5 hover:bg-slate-900 hover:text-white"
+                      }`}
+                    >
+                      <div className="flex items-center space-x-3.5">
+                        <LucideIcon
+                          name={service.iconName}
+                          className={activeServiceId === service.id ? "text-slate-950" : "text-amber-500"}
+                        />
+                        <span className="truncate">{service.title}</span>
+                      </div>
+                      <ArrowRightIcon className={`h-4 w-4 transition-transform ${
+                        activeServiceId === service.id ? "translate-x-1 opacity-100" : "opacity-0"
+                      }`} />
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Описание выбранной услуги */}
+              <div className="w-full bg-slate-900 border border-white/5 rounded-3xl p-6 space-y-6 text-white h-full flex flex-col justify-between">
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-4">
+                    <div className="h-12 w-12 bg-amber-500/10 text-amber-500 rounded-2xl flex items-center justify-center border border-amber-500/20">
+                      <LucideIcon name={activeService.iconName} className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-display font-black text-lg text-white leading-tight">
+                        {activeService.title}
+                      </h3>
+                      <span className="text-gray-400 font-mono text-[10px]">Строго по СНиП, ГОСТ СП</span>
+                    </div>
+                  </div>
+
+                  <p className="text-gray-300 font-sans text-sm leading-relaxed">
+                    {activeService.description}
+                  </p>
+                </div>
+
+                <div className="border-t border-white/5 pt-4 space-y-3">
+                  <span className="block text-[10px] font-mono uppercase tracking-wider text-amber-500 font-bold">
+                    Включает в себя работы:
+                  </span>
+                  <ul className="space-y-2 text-xs text-gray-300">
+                    <li className="flex items-start space-x-2">
+                      <CheckCircle2Icon className="h-4 w-4 text-amber-500 shrink-0 mt-0.5" />
+                      <span>Составление ПСД и сметы</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <CheckCircle2Icon className="h-4 w-4 text-amber-500 shrink-0 mt-0.5" />
+                      <span>Подготовка надежного основания</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <CheckCircle2Icon className="h-4 w-4 text-amber-500 shrink-0 mt-0.5" />
+                      <span>Контроль качества лабораторией</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
-      </div>
+      );
+    }
 
-      <!-- Копирайт подвала -->
-      <div class="border-t border-slate-900/60 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 space-y-4 md:space-y-0">
-        <p>© 2026 ООО «ЭЛЬБРУС». Все права защищены.</p>
-        <div class="flex gap-6">
-          <a href="#" onclick="switchTab('about')" class="hover:text-amber-500">Политика конфиденциальности</a>
-          <a href="#" onclick="switchTab('services')" class="hover:text-amber-500">Пользовательское соглашение</a>
+
+    // --- ПОРТФОЛИО С ВСПЛЫВАЮЩИМИ МОДАЛКАМИ (PORTFOLIO) ---
+    function Portfolio() {
+      const [filter, setFilter] = useState("Все");
+      const [selectedProject, setSelectedProject] = useState(null);
+
+      const categories = ["Все", "Строительство дорог", "Асфальтирование", "Благоустройство территорий", "Земляные работы"];
+
+      const filteredProjects = filter === "Все" 
+        ? PORTFOLIO_DATA 
+        : PORTFOLIO_DATA.filter((p) => p.category.toLowerCase().includes(filter.toLowerCase().substring(0, 8)));
+
+      return (
+        <div className="space-y-12 animate-fadeIn">
+          <div className="text-center max-w-3xl mx-auto space-y-4">
+            <h2 className="font-display font-black text-3xl sm:text-4xl text-slate-900 tracking-tight">
+              Портфолио выполненных проектов
+            </h2>
+            <p className="text-gray-600 font-sans max-w-2xl mx-auto text-base">
+              Мы гордимся каждым сданным объектом. Ознакомьтесь с примерами выполненных нами дорожно-строительных и благоустроительных работ.
+            </p>
+            <div className="h-1.5 w-20 bg-amber-500 mx-auto rounded-full" />
+          </div>
+
+          {/* Фильтры категорий */}
+          <div className="flex flex-wrap justify-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setFilter(cat)}
+                className={`px-5 py-2.5 rounded-xl font-display font-bold text-xs uppercase tracking-wide transition-all duration-200 border cursor-pointer ${
+                  filter === cat
+                    ? "bg-slate-900 text-amber-400 border-slate-900 shadow-sm"
+                    : "bg-white text-slate-600 border-gray-150 hover:bg-gray-50'}"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
+          {/* Сетка проектов */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {filteredProjects.map((project) => (
+              <div
+                key={project.id}
+                className="bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col h-full"
+              >
+                <div className="relative h-64 sm:h-72 overflow-hidden bg-slate-100">
+                  <img
+                    src={project.imageUrl}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute top-4 left-4 pt-1 z-10">
+                    <span className="bg-slate-950/90 backdrop-blur-md text-amber-500 font-display font-black text-[10px] uppercase tracking-wider px-3.5 py-1.5 rounded-full border border-white/5">
+                      {project.category}
+                    </span>
+                  </div>
+                  
+                  {/* Завеса при наведении */}
+                  <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <button 
+                      onClick={() => setSelectedProject(project)}
+                      className="p-3.5 bg-amber-500 text-slate-950 rounded-full font-bold shadow-md hover:scale-110 transition-transform flex items-center justify-center cursor-pointer"
+                    >
+                      <EyeIcon className="h-5 w-5 text-slate-950" />
+                    </button>
+                  </div>
+                </div>
+
+                <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-6">
+                  <div className="space-y-3">
+                    <h3 className="font-display font-black text-xl text-slate-900 leading-tight group-hover:text-amber-600 transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm font-sans line-clamp-3 leading-relaxed">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-2 pt-4 border-t border-gray-100 text-xs text-gray-500 font-mono">
+                    <div>
+                      <span className="block text-[10px] uppercase tracking-wider font-bold text-gray-400 mb-0.5">Локация</span>
+                      <span className="text-slate-800 font-sans font-semibold line-clamp-1">{project.location}</span>
+                    </div>
+                    <div>
+                      <span className="block text-[10px] uppercase tracking-wider font-bold text-gray-400 mb-0.5">Срок сдачи</span>
+                      <span className="text-slate-800 font-sans font-semibold">{project.year}</span>
+                    </div>
+                    <div>
+                      <span className="block text-[10px] uppercase tracking-wider font-bold text-gray-400 mb-0.5">Объем</span>
+                      <span className="text-slate-800 font-sans font-semibold line-clamp-1">{project.area || "ГОСТ"}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Модальное окно по деталям работы */}
+          {selectedProject && (
+            <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+              <div className="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl border border-gray-100 flex flex-col relative animate-fadeIn">
+                <button 
+                  onClick={() => setSelectedProject(null)}
+                  className="absolute top-4 right-4 z-20 p-2 text-white bg-slate-900/60 rounded-full hover:bg-slate-950 hover:text-white transition-colors cursor-pointer text-xs"
+                >
+                  ✕
+                </button>
+
+                <div className="h-64 sm:h-80 relative">
+                  <img 
+                    src={selectedProject.imageUrl} 
+                    alt={selectedProject.title}
+                    className="w-full h-full object-cover" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/20 to-transparent" />
+                  <div className="absolute bottom-6 left-6 right-6 text-white text-left">
+                    <span className="bg-amber-500 text-slate-950 font-display font-black text-xs uppercase tracking-wider px-3.5 py-1.5 rounded-full mb-3 inline-block">
+                      {selectedProject.category}
+                    </span>
+                    <h3 className="text-white text-2xl font-display font-black leading-tight">
+                      {selectedProject.title}
+                    </h3>
+                  </div>
+                </div>
+
+                <div className="p-6 sm:p-8 space-y-6 text-left">
+                  <p className="text-gray-600 font-sans text-sm sm:text-base leading-relaxed">
+                    {selectedProject.description}
+                  </p>
+
+                  <div className="grid grid-cols-3 gap-4 text-xs font-mono text-gray-500">
+                    <div className="bg-slate-50 p-4 rounded-xl">
+                      <span className="block text-gray-400 font-display font-bold uppercase tracking-wider mb-1">Регион</span>
+                      <span className="text-slate-900 font-sans font-bold text-sm">{selectedProject.location}</span>
+                    </div>
+                    <div className="bg-slate-50 p-4 rounded-xl">
+                      <span className="block text-gray-400 font-display font-bold uppercase tracking-wider mb-1">Год сдачи</span>
+                      <span className="text-slate-900 font-sans font-bold text-sm">{selectedProject.year}</span>
+                    </div>
+                    <div className="bg-slate-50 p-4 rounded-xl">
+                      <span className="block text-gray-400 font-display font-bold uppercase tracking-wider mb-1">Площадь</span>
+                      <span className="text-slate-900 font-sans font-bold text-sm">{selectedProject.area || "ГОСТ"}</span>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-end pt-2">
+                    <button 
+                      onClick={() => setSelectedProject(null)}
+                      className="bg-slate-900 hover:bg-slate-800 text-white font-display font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition-colors cursor-pointer"
+                    >
+                      Закрыть
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-      </div>
+      );
+    }
 
-    </div>
-  </footer>
 
-  <!-- ПОДКЛЮЧЕНИЕ СОВРЕМЕННОЙ БИБЛИОТЕКИ ИКОНОК LUCIDE -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  
-  <script>
-    // Инициализируем иконки Lucide на старте
-    lucide.createIcons();
+    // --- НИЖНЯЯ ПАНЕЛЬ С КОНТАКТАМИ И ФОРМОЙ (FOOTER) ---
+    function Footer() {
+      const [name, setName] = useState("");
+      const [phone, setPhone] = useState("");
+      const [service, setService] = useState("");
+      const [comment, setComment] = useState("");
+      const [submitted, setSubmitted] = useState(false);
+      const [error, setError] = useState("");
 
-    // 1. Скрипт для интерактивного переключения вкладок (О компании, Услуги, Портфолио, Контакты)
-    function switchTab(tabId) {
-      // Прячем все вкладки
-      const tabs = document.querySelectorAll('.tab-content');
-      tabs.forEach(tab => tab.classList.remove('active'));
-
-      // Показываем нужную
-      const activeTab = document.getElementById('tab-' + tabId);
-      if (activeTab) {
-        activeTab.classList.add('active');
-      }
-
-      // Обновляем визуальный активный стиль кнопок в шапке на десктопе
-      const navButtons = document.querySelectorAll('.nav-btn');
-      navButtons.forEach(btn => {
-        if (btn.id === 'nav-' + tabId) {
-          btn.className = "nav-btn px-4 py-2.5 rounded-xl font-display font-bold text-xs lg:text-sm tracking-wide uppercase transition-all duration-200 border-2 bg-slate-900 text-white border-slate-900";
-        } else {
-          btn.className = "nav-btn px-4 py-2.5 rounded-xl font-display font-bold text-xs lg:text-sm tracking-wide uppercase transition-all duration-200 border-2 bg-transparent text-slate-700 border-transparent hover:bg-slate-50 hover:text-slate-900";
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!name.trim() || !phone.trim() || !service) {
+          setError("Пожалуйста, заполните все обязательные поля.");
+          return;
         }
-      });
+        setError("");
+        setSubmitted(true);
+        setName("");
+        setPhone("");
+        setService("");
+        setComment("");
+      };
 
-      // Скроллим страницу наверх к началу вкладки
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return (
+        <footer className="bg-slate-950 text-gray-400 font-sans pt-16 pb-8 border-t border-slate-900 rounded-t-[40px] mt-16 text-left">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+              
+              {/* Контакты компании и реквизиты */}
+              <div className="lg:col-span-5 space-y-8">
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <div className="bg-amber-500 text-slate-950 p-2 rounded-lg">
+                      <HammerIcon className="h-5 w-5 text-slate-950" />
+                    </div>
+                    <span className="font-display font-black text-xl sm:text-2xl text-white tracking-tight">
+                      ЭЛЬБРУС
+                    </span>
+                  </div>
+                  <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
+                    Профессиональные услуги дорожного строительства, качественного асфальтирования, благоустройства общественных территорий и разработки грунтов в соответствии с требованиями СНиП и ГОСТ по Курганской области.
+                  </p>
+                </div>
+
+                <div className="space-y-4 pt-2">
+                  <h4 className="font-display font-bold text-white text-sm uppercase tracking-wider">Контакты компании</h4>
+                  
+                  <div className="space-y-3.5">
+                    <a href="tel:+73522550476" className="flex items-start space-x-3.5 group text-sm md:text-base hover:text-white transition-colors">
+                      <PhoneIcon className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
+                      <div>
+                        <span className="block font-semibold text-white font-display">+7 (3522) 55-04-76</span>
+                        <span className="text-xs text-gray-500">Прием звонков и консультации</span>
+                      </div>
+                    </a>
+
+                    <div className="flex items-start space-x-3.5 text-sm md:text-base">
+                      <ClockIcon className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
+                      <div>
+                        <span className="block font-semibold text-white font-display">Пн - Вс: 08:00 - 21:00</span>
+                        <span className="text-xs text-gray-500">Техника работает круглосуточно по согласованию</span>
+                      </div>
+                    </div>
+
+                    <a href="mailto:elbrus-kurgan@yandex.ru" className="flex items-start space-x-3.5 group text-sm md:text-base hover:text-white transition-colors">
+                      <MailIcon className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
+                      <div>
+                        <span className="block font-semibold text-white font-display">elbrus-kurgan@yandex.ru</span>
+                        <span className="text-xs text-gray-500">Для предложений и коммерческих тендеров</span>
+                      </div>
+                    </a>
+
+                    <div className="flex items-start space-x-3.5 text-sm md:text-base">
+                      <MapPinIcon className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
+                      <div>
+                        <span className="block font-semibold text-white font-display">640022, Курганская обл., г. Курган, ул. Савельева, д. 58, кв. 33</span>
+                        <span className="text-xs text-gray-500">Базы размещения техники в гг. Курган и Шадринск</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-slate-900 border border-white/5 rounded-2xl p-4 flex items-center space-x-4 max-w-sm">
+                  <ShieldCheckIcon className="h-10 w-10 text-amber-500 shrink-0" />
+                  <div>
+                    <span className="block text-white font-display font-bold text-sm">СРО и ГОСТ лицензии</span>
+                    <span className="block text-xs text-gray-500">Все допуски на крупное дорожное строительство в наличии.</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Форма профессионального расчета */}
+              <div id="callback-form-box" className="lg:col-span-7 bg-slate-900 border border-white/5 rounded-3xl p-6 sm:p-8 space-y-6">
+                <div className="space-y-1.5">
+                  <h3 className="font-display font-black text-xl sm:text-2xl text-white">
+                    Заказать профессиональный расчёт
+                  </h3>
+                  <p className="text-gray-400 text-sm">
+                    Закажите бесплатный выезд инженера-геодезиста на ваш объект. Мы свяжемся с вами в течение 15 минут.
+                  </p>
+                </div>
+
+                {submitted ? (
+                  <div className="bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 p-6 rounded-2xl space-y-4 animate-fadeIn">
+                    <div className="flex items-center space-x-3">
+                      <div className="bg-emerald-500 text-slate-950 p-1.5 rounded-full font-bold text-xs">✓</div>
+                      <h4 className="font-display font-bold text-lg">Заявка отправлена!</h4>
+                    </div>
+                    <p className="text-sm text-gray-300">
+                      Благодарим за обращение. Наш специалист свяжется с вами по указанному телефону в ближайшее время.
+                    </p>
+                    <button
+                      onClick={() => setSubmitted(false)}
+                      className="text-emerald-400 hover:text-emerald-300 font-display font-bold text-xs uppercase tracking-wide cursor-pointer"
+                    >
+                      Отправить еще одну заявку
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-4 text-white">
+                    {error && <p className="text-rose-400 text-xs font-mono">{error}</p>}
+                    
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="space-y-1.5">
+                        <label className="text-xs font-mono uppercase tracking-wider text-gray-400 font-bold">
+                          Ваше имя <span className="text-amber-500">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          placeholder="Иван Петров"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          className="w-full bg-slate-950 border border-white/10 hover:border-amber-500/50 focus:border-amber-500 focus:outline-none rounded-xl px-4 py-3 placeholder-gray-600 text-sm text-white"
+                        />
+                      </div>
+                      
+                      <div className="space-y-1.5">
+                        <label className="text-xs font-mono uppercase tracking-wider text-gray-400 font-bold">
+                          Номер телефона <span className="text-amber-500">*</span>
+                        </label>
+                        <input
+                          type="tel"
+                          required
+                          placeholder="+7 (___) ___-__-__"
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          className="w-full bg-slate-950 border border-white/10 hover:border-amber-500/50 focus:border-amber-500 focus:outline-none rounded-xl px-4 py-3 placeholder-gray-600 text-sm text-white"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-mono uppercase tracking-wider text-gray-400 font-bold">
+                        Тип услуги <span className="text-amber-500">*</span>
+                      </label>
+                      <select
+                        required
+                        value={service}
+                        onChange={(e) => setService(e.target.value)}
+                        className="w-full bg-slate-950 border border-white/10 hover:border-amber-500/50 focus:border-amber-500 focus:outline-none rounded-xl px-4 py-3 text-sm text-white"
+                      >
+                        <option value="" disabled>-- Выберите из списка --</option>
+                        <option value="road-construction">Строительство новых дорог</option>
+                        <option value="road-paving">Асфальтирование дорог и тротуаров</option>
+                        <option value="earthworks">Земляные работы, планировка</option>
+                        <option value="curb-installation">Установка бортовых камней</option>
+                        <option value="landscaping">Благоустройство территорий и парков</option>
+                        <option value="excavation">Разработка котлованов</option>
+                        <option value="road-marking">Профессиональная разметка дорог</option>
+                      </select>
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-mono uppercase tracking-wider text-gray-400 font-bold">
+                        Детали застройки (необязательно)
+                      </label>
+                      <textarea
+                        rows={3}
+                        placeholder="Ориентировочная площадь, адрес объекта..."
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
+                        className="w-full bg-slate-950 border border-white/10 hover:border-amber-500/50 focus:border-amber-500 focus:outline-none rounded-xl px-4 py-3 text-sm text-white"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-display font-black tracking-wide text-xs uppercase px-8 py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-lg"
+                    >
+                      <SendIcon className="h-4 w-4 text-slate-950" />
+                      Отправить заявку на замер
+                    </button>
+
+                    <span className="block text-[10px] text-gray-500 leading-normal text-center">
+                      Нажимая на кнопку, вы соглашаетесь на обработку данных по ФЗ № 152-ФЗ.
+                    </span>
+                  </form>
+                )}
+              </div>
+
+            </div>
+
+            <div className="border-t border-slate-900/60 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 space-y-4 md:space-y-0">
+              <p>© {new Date().getFullYear()} ООО «ЭЛЬБРУС». Все права защищены.</p>
+              <div className="flex gap-6">
+                <a href="#about" className="hover:text-amber-500 transition-colors">Политика конфиденциальности</a>
+                <a href="#services" className="hover:text-amber-500 transition-colors">Пользовательское соглашение</a>
+              </div>
+            </div>
+
+          </div>
+        </footer>
+      );
     }
 
-    // 2. Мобильное бургер-меню
-    let isMobileMenuOpen = false;
-    function toggleMobileMenu() {
-      const menu = document.getElementById('mobile-menu');
-      const burgerIcon = document.getElementById('menu-icon-burger');
-      const closeIcon = document.getElementById('menu-icon-close');
-      
-      isMobileMenuOpen = !isMobileMenuOpen;
-      
-      if (isMobileMenuOpen) {
-        menu.classList.remove('hidden');
-        burgerIcon.classList.add('hidden');
-        closeIcon.classList.remove('hidden');
-      } else {
-        menu.classList.add('hidden');
-        burgerIcon.classList.remove('hidden');
-        closeIcon.classList.add('hidden');
-      }
+
+    // --- ОСНОВНОЙ КОМПОНЕНТ ПРИЛОЖЕНИЯ (APP) ---
+    function App() {
+      const [activeTab, setActiveTab] = useState("about");
+
+      useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, [activeTab]);
+
+      return (
+        <div className="min-h-screen bg-slate-50/50 flex flex-col font-sans">
+          
+          {/* Информационная строка сверху */}
+          <div className="bg-slate-900 text-gray-400 py-2 px-4 text-xs font-medium border-b border-white/5 text-left">
+            <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5">
+              <div className="flex items-center space-x-4">
+                <span className="flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" />
+                  Работаем по всей Курганской области и УрФО
+                </span>
+              </div>
+              <div className="flex items-center space-x-4 font-mono text-[11px]">
+                <span>ООО «ЭЛЬБРУС»</span>
+                <span>|</span>
+                <span>ИНН: 4501194763</span>
+              </div>
+            </div>
+          </div>
+
+          <Header activeTab={activeTab} setActiveTab={setActiveTab} />
+
+          {/* Тело страницы с подгрузкой выбранного таба */}
+          <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+            
+            {activeTab === "about" && (
+              <About 
+                onExploreServices={() => setActiveTab("services")} 
+                onExplorePortfolio={() => setActiveTab("portfolio")} 
+              />
+            )}
+            
+            {activeTab === "services" && <Services />}
+            
+            {activeTab === "portfolio" && <Portfolio />}
+            
+            {activeTab === "contacts" && (
+              <div className="space-y-12 animate-fadeIn">
+                <div className="text-center max-w-3xl mx-auto space-y-4">
+                  <h2 className="font-display font-black text-3xl sm:text-4xl text-slate-900 tracking-tight">
+                    Контактная информация ООО «ЭЛЬБРУС»
+                  </h2>
+                  <p className="text-gray-600 font-sans max-w-2xl mx-auto text-base">
+                    Мы всегда на связи и готовы проконсультировать вас по любым дорожным, производственным и благоустроительным вопросам.
+                  </p>
+                  <div className="h-1.5 w-20 bg-amber-500 mx-auto rounded-full" />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                  <div className="bg-white border border-gray-100 rounded-3xl p-8 sm:p-10 shadow-sm space-y-8 flex flex-col justify-between text-left">
+                    <div className="space-y-6">
+                      <h3 className="font-display font-black text-2xl text-slate-900">Административный офис</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        Координируем дорожно-строительные работы по Курганской области. Располагаем собственным штатом из 26 высококвалифицированных специалистов и широким спектром современной дорожной спецтехники для укладки, разметки и земляных работ.
+                      </p>
+                    </div>
+
+                    <div className="space-y-4">
+                      <div className="flex items-center space-x-3 text-sm sm:text-base text-gray-700">
+                        <MapPinIcon className="h-5 w-5 text-amber-500 shrink-0" />
+                        <span>640022, Курганская область, г. Курган, ул. Савельева, д. 58, кв. 33</span>
+                      </div>
+                      <div className="flex items-center space-x-3 text-sm sm:text-base text-gray-700 font-bold">
+                        <PhoneIcon className="h-5 w-5 text-amber-500 shrink-0" />
+                        <span>+7 (3522) 55-04-76</span>
+                      </div>
+                    </div>
+
+                    <div className="bg-amber-500/10 border border-amber-500/15 p-5 rounded-2xl flex items-start space-x-3">
+                      <TruckIcon className="h-6 w-6 text-amber-600 shrink-0 mt-0.5" />
+                      <div>
+                        <span className="block font-display font-bold text-slate-900 text-sm">Бесплатный выезд инженера и замерщика</span>
+                        <span className="block text-slate-700 text-xs mt-1">
+                          Специалист оперативно выедет на ваш объект для проведения лазерного замера территории под строительство или асфальтирование абсолютно бесплатно в границах г. Курган.
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-slate-900 rounded-3xl p-8 sm:p-10 shadow-sm text-white flex flex-col justify-between relative overflow-hidden min-h-[350px]">
+                    <div className="absolute inset-0 bg-cover bg-center brightness-40 pointer-events-none" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1542224566-6e85f2e6772f?auto=format&fit=crop&w=1200&q=80')` }} />
+                    <div className="relative z-10 space-y-6 text-left">
+                      <span className="text-[10px] bg-amber-500/20 text-amber-400 font-mono font-bold border border-amber-500/20 px-3.5 py-1.5 rounded-full uppercase tracking-wider">
+                        Производственные мощности
+                      </span>
+                      <h3 className="font-display font-black text-2xl sm:text-3xl text-white tracking-tight leading-tight">
+                        Строим по всей Курганской области и соседним регионам.
+                      </h3>
+                      <p className="text-gray-300 text-sm leading-relaxed max-w-sm">
+                        Наши технические базы размещены в г. Курган и г. Шадринск, что обеспечивает мобильность, оперативную доставку асфальтобетонных смесей и подачу катков на объекты.
+                      </p>
+                    </div>
+
+                    <div className="relative z-10 pt-6 text-left">
+                      <a 
+                        href="#callback-form-box"
+                        className="inline-block bg-amber-500 hover:bg-amber-600 text-slate-950 font-display font-black text-xs uppercase tracking-widest px-6 py-3.5 rounded-xl transition-all cursor-pointer shadow-md"
+                      >
+                        Заказать выезд инженера
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+          </main>
+
+          <Footer />
+
+        </div>
+      );
     }
 
-    // 3. Скрипт для интерактивной вкладки «УСЛУГИ»
-    const servicesData = {
-      'road-construction': {
-        title: 'Строительство дорог',
-        img: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80',
-        desc: 'Проектирование и сооружение дорог общего пользования всех технических категорий, укладка песчано-гравия и щебеночного основания, распределение слоев дорожной одежды.'
-      },
-      'road-paving': {
-        title: 'Асфальтирование дорог и тротуаров',
-        img: 'https://images.unsplash.com/photo-1590069261209-f8e9b8642343?auto=format&fit=crop&w=800&q=80',
-        desc: 'Высококлассная укладка асфальтобетонной смеси любой плотности и типа. Устройство новых и капитальный ремонт изношенных покрытий с бесшовным примыканием.'
-      },
-      'earthworks': {
-        title: 'Земляные работы',
-        img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80',
-        desc: 'Комплексная планировка строительного участка, перемещение и выравнивание грунтов, подготовка земляного полотна, уплотнение тяжелой катковой техникой.'
-      },
-      'curbs': {
-        title: 'Установка бортового камня',
-        img: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=800&q=80',
-        desc: 'Монтаж дорожных и тротуарных бордюров (бортовых камней) строго по отметкам нивелира на прочное бетонное основание с устройством замка.'
-      },
-      'landscaping': {
-        title: 'Благоустройство территорий и парков',
-        img: 'https://images.unsplash.com/photo-1584467541268-b040f83be3fd?auto=format&fit=crop&w=800&q=80',
-        desc: 'Комплексное озеленение общественных пространств, мощение тротуарной плиткой (брусчаткой), обустройство пешеходных дорожек, эко-троп и аллей.'
-      }
-    };
-
-    function selectService(serviceKey) {
-      const service = servicesData[serviceKey];
-      if (!service) return;
-
-      // Обновляем текст и картинку демо-стенда услуг
-      document.getElementById('service-showcase-img').src = service.img;
-      document.getElementById('service-showcase-title').innerText = service.title;
-      document.getElementById('service-desc-title').innerText = service.title;
-      document.getElementById('service-desc-text').innerText = service.desc;
-
-      // Стилизация активной кнопки меню услуг
-      const buttons = document.querySelectorAll('.service-selector-btn');
-      buttons.forEach(btn => {
-        if (btn.id === 'srv-' + serviceKey) {
-          btn.className = "service-selector-btn text-left px-5 py-3.5 rounded-xl border border-amber-500 bg-amber-500 text-slate-950 flex items-center justify-between transition-all font-display font-bold text-sm pointer-events-none";
-          // Показываем стрелку
-          btn.querySelector('svg:last-child').style.opacity = '1';
-        } else {
-          btn.className = "service-selector-btn text-left px-5 py-3.5 rounded-xl border border-white/5 bg-slate-900/40 text-slate-300 hover:border-white/10 hover:bg-slate-900 transition-all font-display font-bold text-sm";
-          btn.querySelector('svg:last-child').style.opacity = '0';
-        }
-      });
-    }
-
-    // 4. Скрипт фильтрации во вкладке «НАШИ РАБОТЫ»
-    function filterPortfolio(category) {
-      // Обновляем визуальный стиль вкладок-фильтров
-      const filterButtons = document.querySelectorAll('.portfolio-filter-btn');
-      filterButtons.forEach(btn => {
-        if (btn.id === 'filter-' + category) {
-          btn.className = "portfolio-filter-btn px-5 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm uppercase tracking-wide transition-all border bg-slate-900 text-amber-400 border-slate-900";
-        } else {
-          btn.className = "portfolio-filter-btn px-5 py-2.5 rounded-xl font-display font-bold text-xs sm:text-sm uppercase tracking-wide transition-all border bg-white text-slate-600 border-gray-200 hover:bg-gray-50";
-        }
-      });
-
-      // Показываем/скрываем карточки портфолио в сетке
-      const cards = document.querySelectorAll('.portfolio-item-card');
-      cards.forEach(card => {
-        if (category === 'all' || card.getAttribute('data-category') === category) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    }
-
-    // 5. Вспомогательная прокрутка
-    function scrollToCallback() {
-      const box = document.getElementById('callback-form-box');
-      if (box) {
-        box.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-
-    // 6. Обработка отправки формы
-    function handleFormSubmit(event) {
-      event.preventDefault();
-      
-      // Здесь код обработки (имитация успешной отправки)
-      document.getElementById('form-inner-container').classList.add('hidden');
-      document.getElementById('form-success-container').classList.remove('hidden');
-    }
-
-    function resetQuoteForm() {
-      // Сброс полей
-      document.getElementById('form-name').value = '';
-      document.getElementById('form-phone').value = '';
-      document.getElementById('form-service').selectedIndex = 0;
-      document.getElementById('form-comment').value = '';
-
-      // Возвращаем видимость формы
-      document.getElementById('form-inner-container').classList.remove('hidden');
-      document.getElementById('form-success-container').classList.add('hidden');
-    }
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
   </script>
 </body>
 </html>
