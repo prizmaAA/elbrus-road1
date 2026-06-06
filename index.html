@@ -7,7 +7,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@450;600;700;800;900&family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -26,7 +26,7 @@
                 200: '#fde68a',
                 300: '#fcd34d',
                 400: '#fbbf24',
-                500: '#f59e0b', // Тот самый сочный оранжевый цвет
+                500: '#f59e0b', // Сочный оранжевый бренд-цвет
                 600: '#d97706', 
                 700: '#b45309',
                 800: '#92400e',
@@ -41,7 +41,6 @@
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
               display: ['Montserrat', 'sans-serif'],
-              mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
             }
           }
         }
@@ -49,9 +48,15 @@
     </script>
 
     <style>
-      /* Жесткое правило для супер-жирных заголовков */
-      h1 { 
-        font-weight: 900 !important; 
+      /* Принудительная максимальная жирность и сглаживание для заголовков */
+      h1, .font-black {
+        font-family: 'Montserrat', sans-serif !important;
+        font-weight: 900 !important;
+        letter-spacing: -0.02em !important;
+      }
+      h2, h3 {
+        font-family: 'Montserrat', sans-serif !important;
+        font-weight: 800 !important;
       }
       @keyframes fadeInUp {
         from { opacity: 0; transform: translateY(12px); }
@@ -71,7 +76,7 @@
       const { useState, useEffect } = React;
 
       // =========================================================
-      // НАБОРЫ ДАННЫХ
+      // НАБОРЫ ДАННЫХ ИЗ ФАЙЛА data.ts холдинга
       // =========================================================
       const SERVICES_DATA = [
         {
@@ -92,7 +97,7 @@
         {
           id: "road-paving",
           title: "Асфальтирование дорог и тротуаров",
-          description: "Высококлассная укладка асфальтобетонной смеси любой плотности и типа. Устройство новых и капитальный ремонт изношенных покрытия с бесшовным примыканием.",
+          description: "Высококлассная укладка асфальтобетонной смеси любой плотности и типа. Устройство новых и капитальный ремонт изношенных покрытий с бесшовным примыканием.",
           iconName: "Flame",
           imageUrl: "https://images.unsplash.com/photo-1590069261209-f8e9b8642343?auto=format&fit=crop&w=800&q=80",
           includedWorks: [
@@ -227,7 +232,7 @@
           id: "port-3",
           title: "Благоустройство сквера Победы и ландшафтного парка",
           category: "Благоустройство территорий",
-          description: "Снятие старого деформированного покрытия, планировка территории, укладка фигурной тротуарной плитки на пешеходных дорожках, creation искусственных микрорельефов парка и посадка зеленых насаждений.",
+          description: "Снятие старого деформированного покрытия, планировка территории, укладка фигурной тротуарной плитки на пешеходных дорожках, создание искусственных микрорельефов парка и посадка зеленых насаждений.",
           location: "г. Шадринск, Курганская обл.",
           year: "2024 г.",
           area: "14 800 кв. м",
@@ -246,7 +251,7 @@
       ];
 
       // =========================================================
-      // АВТОНОМНЫЕ ВЕКТОРНЫЕ ИКОНЫ (ВМЕСТО КРИВОГО СКРИПТА CDN)
+      // АВТОНОМНЫЕ ВЕКТОРНЫЕ ИКОНЫ
       // =========================================================
       function LucideIcon({ name, className = "h-5 w-5", size = 20 }) {
         const styles = {
@@ -503,15 +508,17 @@
       function About({ onExploreServices, onExplorePortfolio }) {
         return (
           <div className="space-y-16 animate-fade-in-up">
-            <section className="relative bg-slate-900 rounded-3xl overflow-hidden shadow-2xl">
+            {/* ЖЕСТКИЙ ФИКС СТЕНЫ ДИЗАЙНА — ДОБАВЛЕНА РАСЧЕТНАЯ ТЕНЬ SHADOW-2XL */}
+            <section className="relative bg-[#0B0F19] rounded-3xl overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] border border-slate-900">
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-amber-500/10 via-slate-950/95 to-slate-950 pointer-events-none z-0" />
               <div className="relative z-10 px-6 py-16 sm:py-20 md:py-24 max-w-5xl mx-auto text-center space-y-8">
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-500 border border-amber-500/25 text-xs font-semibold tracking-wider uppercase">
-                  <LucideIcon name="Star" className="h-3.5 w-3.5 fill-current" />
+                  <LucideIcon name="Star" className="h-3.5 w-3.5 fill-current text-amber-500" />
                   Лидеры дорожного строительства
                 </div>
-                <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl text-white tracking-tight leading-none">
-                  Надёжные дороги для <span className="text-amber-500">будущего</span> поколения
+                {/* АДАПТИВНЫЙ ПЕРЕНОС <BR /> — СЛОВО БУДУЩЕГО ТЕПЕРЬ СТРОГО НА ВТОРОЙ СТРОКЕ, КАК В ОРИГИНАЛЕ */}
+                <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl text-white tracking-tight leading-tight max-w-4xl mx-auto">
+                  Надёжные дороги для <br className="hidden sm:inline" /> <span className="text-amber-500">будущего</span> поколения
                 </h1>
                 <p className="text-gray-400 text-lg sm:text-xl max-w-3xl mx-auto font-sans leading-relaxed">
                   Профессиональное строительство и капитальный ремонт дорог любой сложности, асфальтирование и благоустройство территорий по стандартам ГОСТ. Собственный парк техники.
@@ -558,13 +565,13 @@
                       <LucideIcon name={item.iconName} className="h-8 w-8 text-slate-800" />
                     </div>
                     <h3 className="font-display font-black text-lg text-slate-900 mb-2">{item.title}</h3>
-                    <p className="text-gray-600 font-sans text-sm leading-relaxed max-w-sm">{item.description}</p>
+                    <p className="text-gray-650 font-sans text-sm leading-relaxed max-w-sm">{item.description}</p>
                   </div>
                 ))}
               </div>
             </section>
 
-            <section className="bg-slate-900 rounded-3xl p-8 sm:p-12 text-white">
+            <section className="bg-slate-900 rounded-3xl p-8 sm:p-12 text-white shadow-xl">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div>
                   <p className="text-4xl sm:text-5xl font-display font-black text-amber-500">12+</p>
@@ -972,12 +979,14 @@
               <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5">
                 <span className="flex items-center gap-1.5">
                   <span className="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" />
-                  Работаем по всей Курганской области и Уральскому федеральному округу
+                  Принимаем заявки и работаем по всей Курганской области и УрФО
                 </span>
                 <div className="flex items-center space-x-3 font-mono text-[10px]">
                   <span>ООО «ЭЛЬБРУС»</span>
                   <span>|</span>
                   <span>ИНН: 4501194763</span>
+                  <span>|</span>
+                  <span>ОГРН: 1144501003570</span>
                 </div>
               </div>
             </div>
@@ -1009,7 +1018,7 @@
                         <div className="space-y-4">
                           <h3 className="font-display font-black text-xl text-slate-900">Административный офис</h3>
                           <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
-                            Управление дорожно-строительными работами по Курганской области. Собственный штат специалистов и широкий спектром современной спецтехники для всех этапов дорожных работ.
+                            Управление дорожно-строительными работами по Курганской области. Собственный штат специалистов и широкий спектр современной спецтехники для всех этапов дорожных работ.
                           </p>
                         </div>
 
