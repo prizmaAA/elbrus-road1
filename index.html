@@ -11,9 +11,9 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js" crossorigin></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.24.7/babel.min.js"></script>
 
     <script>
       tailwind.config = {
@@ -508,7 +508,6 @@
       function About({ onExploreServices, onExplorePortfolio }) {
         return (
           <div className="space-y-16 animate-fade-in-up">
-            {/* ЖЕСТКИЙ ФИКС СТЕНЫ ДИЗАЙНА — ДОБАВЛЕНА РАСЧЕТНАЯ ТЕНЬ SHADOW-2XL */}
             <section className="relative bg-[#0B0F19] rounded-3xl overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] border border-slate-900">
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-amber-500/10 via-slate-950/95 to-slate-950 pointer-events-none z-0" />
               <div className="relative z-10 px-6 py-16 sm:py-20 md:py-24 max-w-5xl mx-auto text-center space-y-8">
@@ -516,7 +515,6 @@
                   <LucideIcon name="Star" className="h-3.5 w-3.5 fill-current text-amber-500" />
                   Лидеры дорожного строительства
                 </div>
-                {/* АДАПТИВНЫЙ ПЕРЕНОС <BR /> — СЛОВО БУДУЩЕГО ТЕПЕРЬ СТРОГО НА ВТОРОЙ СТРОКЕ, КАК В ОРИГИНАЛЕ */}
                 <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl text-white tracking-tight leading-tight max-w-4xl mx-auto">
                   Надёжные дороги для <br className="hidden sm:inline" /> <span className="text-amber-500">будущего</span> поколения
                 </h1>
@@ -714,7 +712,7 @@
           <div className="space-y-12 animate-fade-in-up">
             <div className="text-center max-w-3xl mx-auto space-y-4">
               <h2 className="font-display font-black text-3xl text-slate-900">Портфолио выполненных проектов</h2>
-              <p className="text-gray-600 text-xs sm:text-sm font-sans">Курганская область, город Шадринск и федеральные направления</p>
+              <p className="text-gray-600 text-xs sm:text-sm font-sans">Курганская область, город Шадринск и federalные направления</p>
               <div className="h-1.5 w-16 bg-amber-500 mx-auto rounded-full" />
             </div>
 
