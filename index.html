@@ -197,19 +197,19 @@
           id: "fair-price",
           title: "Честная цена",
           description: "Мы - конечные исполнители, а не звено в цепочке подрядчиков. Обращаясь к нам за услугами, гарантируем, что вы не переплатите.",
-          iconName: "Wallet"
+          iconName: "Receipt"
         },
         {
           id: "own-staff-and-fleet",
           title: "Свой штат работников и парк техники",
           description: "Можем взяться за проект любой сложности в кратчайшие сроки, т.к. нам не требуется время на поиск необходимых ресурсов.",
-          iconName: "Wrench"
+          iconName: "Truck"
         },
         {
           id: "warranty-and-contract",
           title: "Гарантия до 5 лет и работа по договору",
           description: "Работаем на совесть: стараемся все делать надежно и долговечно. А чтобы вы чувствовали себя уверенно, мы даем гарантию на все выполненные работы.",
-          iconName: "FileCheck"
+          iconName: "ShieldCheck"
         }
       ];
 
@@ -313,27 +313,11 @@
               <path d="M5 17A12 12 0 0 1 17 5" />
             </svg>
           ),
-          Wallet: (
+          Receipt: (
             <svg viewBox="0 0 24 24" style={styles} className={className}>
-              <rect x="2" y="4" width="20" height="16" rx="2" />
-              <path d="M12 11h10v2H12z" />
-            </svg>
-          ),
-          Wrench: (
-            <svg viewBox="0 0 24 24" style={styles} className={className}>
-              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-            </svg>
-          ),
-          FileCheck: (
-            <svg viewBox="0 0 24 24" style={styles} className={className}>
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-              <polyline points="14 2 14 8 20 8" />
-              <polyline points="9 15 11 17 15 13" />
-            </svg>
-          ),
-          Star: (
-            <svg viewBox="0 0 24 24" style={{...styles, fill: "currentColor"}} className={className}>
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z" />
+              <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8" />
+              <path d="M12 6v12" />
             </svg>
           ),
           Calendar: (
@@ -440,13 +424,10 @@
           <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all duration-300">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex justify-between items-center h-20 sm:h-24">
-                <div className="flex items-center space-x-3 cursor-pointer group" onClick={() => setActiveTab("about")}>
-                  <div className="bg-amber-500 text-slate-900 p-2.5 rounded-xl shadow-md group-hover:bg-amber-600 transition-colors">
-                    <LucideIcon name="Route" className="h-6 sm:h-7 w-6 sm:w-7" />
-                  </div>
+                <div className="flex items-center space-x-2 cursor-pointer group" onClick={() => setActiveTab("about")}>
                   <div>
-                    <span className="block font-display font-black text-xl sm:text-2xl tracking-tight text-slate-900 group-hover:text-amber-600 transition-colors">
-                      ЭЛЬБРУС
+                    <span className="block font-display font-black text-2xl sm:text-3xl tracking-tight text-slate-900 group-hover:text-amber-600 transition-colors">
+                      <span className="text-amber-500 font-black text-3xl sm:text-4xl">Э</span>ЛЬБРУС
                     </span>
                     <span className="block text-[10px] sm:text-xs font-mono uppercase tracking-[0.14em] text-slate-500 font-bold">
                       производство и дорожное строительство
@@ -529,7 +510,7 @@
 
         return (
           <div className="space-y-16 animate-fade-in-up">
-            <section className="relative bg-[#0B0F19] rounded-3xl overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] border border-slate-900 min-h-[500px] flex items-center justify-center">
+            <section className="relative bg-[#0B0F19] rounded-3xl overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] border border-slate-900 min-h-[520px] flex items-center">
               {bgImages.map((img, index) => (
                 <div
                   key={img}
@@ -540,35 +521,37 @@
                 />
               ))}
 
-              <div className="relative z-20 px-6 py-16 sm:py-20 md:py-24 max-w-5xl mx-auto text-center space-y-8">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/70 text-amber-400 border border-amber-500/30 text-xs font-semibold tracking-wider uppercase backdrop-blur-md shadow-lg">
-                  <LucideIcon name="Star" className="h-3.5 w-3.5 fill-current text-amber-400" />
-                  Лидеры дорожного строительства
-                </div>
-                
-                <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl text-white tracking-tight leading-tight max-w-4xl mx-auto text-glow">
-                  Надёжные дороги для <br className="hidden sm:inline" /> <span className="text-amber-400 drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">будущего</span> поколения
-                </h1>
-                
-                <p className="text-gray-100 text-lg sm:text-xl max-w-3xl mx-auto font-sans leading-relaxed subtext-glow font-medium">
-                  Профессиональное строительство и капитальный ремонт дорог любой сложности, асфальтирование и благоустройство территорий по стандартам ГОСТ. Собственный парк техники.
-                </p>
+              <div className="relative z-20 px-6 sm:px-12 py-16 sm:py-20 max-w-7xl mx-auto w-full flex flex-col items-center md:items-start text-center md:text-left">
+                <div className="max-w-2xl space-y-6 md:space-y-8">
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/70 text-slate-200 border border-white/10 text-xs font-semibold tracking-wider uppercase backdrop-blur-md shadow-lg">
+                    <LucideIcon name="ShieldCheck" className="h-4 w-4 text-amber-400" />
+                    Лидеры дорожного строительства
+                  </div>
+                  
+                  <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl text-white tracking-tight leading-tight text-glow">
+                    Надежные дороги для <br className="hidden sm:inline" /> <span className="text-amber-400 drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">будущего</span> поколения
+                  </h1>
+                  
+                  <p className="text-gray-100 text-lg sm:text-xl font-sans leading-relaxed subtext-glow font-medium">
+                    Профессиональное строительство и капитальный ремонт дорог любой сложности, асфальтирование и благоустройство территорий по стандартам ГОСТ. Собственный парк техники.
+                  </p>
 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2">
-                  <button onClick={onExploreServices} className="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-slate-950 font-display font-black text-sm px-8 py-4 rounded-xl shadow-2xl shadow-black/80 flex items-center justify-center gap-2 cursor-pointer transform hover:-translate-y-0.5 transition-all">
-                    Наши услуги
-                    <LucideIcon name="ArrowRight" className="h-4 w-4" />
-                  </button>
-                  <button onClick={onExplorePortfolio} className="w-full sm:w-auto bg-slate-950/70 hover:bg-slate-950/90 text-white border border-white/30 px-8 py-4 rounded-xl font-display font-bold text-sm cursor-pointer backdrop-blur-md shadow-2xl transition-all">
-                    Примеры работ
-                  </button>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center pt-2">
+                    <button onClick={onExploreServices} className="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-slate-950 font-display font-black text-sm px-8 py-4 rounded-xl shadow-2xl shadow-black/80 flex items-center justify-center gap-2 cursor-pointer transform hover:-translate-y-0.5 transition-all">
+                      Наши услуги
+                      <LucideIcon name="ArrowRight" className="h-4 w-4" />
+                    </button>
+                    <button onClick={onExplorePortfolio} className="w-full sm:w-auto bg-slate-950/70 hover:bg-slate-950/90 text-white border border-white/30 px-8 py-4 rounded-xl font-display font-bold text-sm cursor-pointer backdrop-blur-md shadow-2xl transition-all">
+                      Примеры работ
+                    </button>
+                  </div>
                 </div>
               </div>
             </section>
 
             <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="group relative h-[320px] rounded-3xl overflow-hidden shadow-lg border border-gray-100">
-                <img src="./images/card-process.jpg" alt="Дорожное полотно" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <img src="./images/card-process.jpg" alt="Дорожное полотно" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/30 to-transparent flex flex-col justify-end p-6 sm:p-8">
                   <span className="text-amber-400 font-mono text-xs uppercase tracking-widest font-bold">Процесс укладки</span>
                   <h3 className="text-white text-xl sm:text-2xl font-display font-black mt-1">Современное дорожное полотно</h3>
@@ -576,7 +559,7 @@
               </div>
 
               <div className="group relative h-[320px] rounded-3xl overflow-hidden shadow-lg border border-gray-100">
-                <img src="./images/card-result.jpg" alt="Асфальтобетон" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <img src="./images/card-result.jpg" alt="Асфальтобетон" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/30 to-transparent flex flex-col justify-end p-6 sm:p-8">
                   <span className="text-amber-400 font-mono text-xs uppercase tracking-widest font-bold">Результат</span>
                   <h3 className="text-white text-xl sm:text-2xl font-display font-black mt-1">Ровное асфальтобетонное покрытие</h3>
@@ -589,14 +572,14 @@
                 <h2 className="font-display font-black text-3xl text-slate-900">Почему выбирают нашу компанию</h2>
                 <div className="h-1.5 w-16 bg-amber-500 mx-auto mt-4 rounded-full" />
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {WHY_CHOOSE_US_DATA.map((item) => (
-                  <div key={item.id} className="flex flex-col items-center text-center px-4 py-6 md:py-2">
-                    <div className="h-16 w-16 rounded-full border border-gray-150 bg-gray-50 flex items-center justify-center mb-4">
-                      <LucideIcon name={item.iconName} className="h-8 w-8 text-slate-800" />
+                  <div key={item.id} className="bg-slate-50 border border-gray-100 rounded-2xl p-6 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow">
+                    <div className="h-14 w-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-600 flex items-center justify-center mb-4">
+                      <LucideIcon name={item.iconName} className="h-7 w-7" />
                     </div>
                     <h3 className="font-display font-black text-lg text-slate-900 mb-2">{item.title}</h3>
-                    <p className="text-gray-650 font-sans text-sm leading-relaxed max-w-sm">{item.description}</p>
+                    <p className="text-gray-600 font-sans text-xs sm:text-sm leading-relaxed">{item.description}</p>
                   </div>
                 ))}
               </div>
@@ -767,7 +750,7 @@
               {filtered.map((p) => (
                 <div key={p.id} className="bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col h-full">
                   <div className="relative h-60 sm:h-64 overflow-hidden bg-slate-100">
-                    <img src={p.imageUrl} alt={p.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103" />
+                    <img src={p.imageUrl} alt={p.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                     <div className="absolute top-4 left-4">
                       <span className="bg-slate-950/90 backdrop-blur-md text-amber-500 font-display font-black text-[10px] uppercase tracking-wider px-3.5 py-1.5 rounded-full border border-white/5">
                         {p.category}
@@ -870,11 +853,10 @@
                 {/* Левая инфо-колонка */}
                 <div className="lg:col-span-5 space-y-8">
                   <div className="space-y-4">
-                    <div className="flex items-center space-x-3">
-                      <div className="bg-amber-500 text-slate-950 p-2 rounded-lg">
-                        <LucideIcon name="Route" className="h-5 w-5" />
-                      </div>
-                      <span className="font-display font-black text-xl sm:text-2xl text-white tracking-tight">ЭЛЬБРУС</span>
+                    <div>
+                      <span className="block font-display font-black text-xl sm:text-2xl text-white tracking-tight">
+                        <span className="text-amber-500 font-black text-2xl sm:text-3xl">Э</span>ЛЬБРУС
+                      </span>
                     </div>
                     <p className="text-gray-400 text-xs sm:text-sm leading-relaxed max-w-sm">
                       Профессиональные услуги дорожного строительства, качественного асфальтирования, благоустройства общественных территорий и разработки грунтов в Курганской области.
@@ -925,34 +907,34 @@
                 </div>
 
                 {/* Интерактивная форма заявки на замер */}
-                <div id="callback-form-box" className="lg:col-span-7 bg-slate-900 border border-white/5 rounded-3xl p-6 sm:p-8 space-y-6">
+                <div id="callback-form-box" className="lg:col-span-7 bg-slate-900 border border-white/10 rounded-3xl p-6 sm:p-8 space-y-6">
                   <div className="space-y-1">
                     <h3 className="font-display font-black text-lg sm:text-xl text-white">Заказать профессиональный расчёт</h3>
-                    <p className="text-gray-400 text-xs sm:text-sm">Бесплатный выезд инженера-геодезиста на ваш объект. Свяжемся с вами в течение 15 минут.</p>
+                    <p className="text-gray-300 text-xs sm:text-sm">Бесплатный выезд инженера-геодезиста на ваш объект. Свяжемся с вами в течение 15 минут.</p>
                   </div>
 
                   {submitted ? (
                     <div className="bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 p-6 rounded-2xl space-y-3 animate-fade-in-up">
                       <h4 className="font-display font-bold text-md">✓ Заявка успешно принята в обработку</h4>
-                      <p className="text-xs text-gray-300">Наш специалист в г. Курган созвонится с вами по указанному телефону в кратчайшие сроки.</p>
+                      <p className="text-xs text-gray-300">Наш специалист созвонится с вами по указанному телефону в кратчайшие сроки.</p>
                       <button onClick={() => setSubmitted(false)} className="text-emerald-400 hover:text-emerald-300 font-display font-bold text-xs underline cursor-pointer">Отправить ещё одну заявку</button>
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} id="callback-form" className="space-y-4">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div className="space-y-1">
-                          <label className="text-[10px] font-mono text-gray-400 uppercase font-bold">Ваше имя <span className="text-amber-500">*</span></label>
-                          <input type="text" required placeholder="Имя" value={name} onChange={(e) => setName(e.target.value)} className="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:border-amber-500 focus:outline-none" />
+                          <label className="text-[10px] font-mono text-gray-300 uppercase font-bold">Ваше имя <span className="text-amber-500">*</span></label>
+                          <input type="text" required placeholder="Имя" value={name} onChange={(e) => setName(e.target.value)} className="w-full bg-slate-950 border border-white/20 rounded-xl px-4 py-3 text-xs text-white placeholder-gray-500 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500" />
                         </div>
                         <div className="space-y-1">
-                          <label className="text-[10px] font-mono text-gray-400 uppercase font-bold">Номер телефона <span className="text-amber-500">*</span></label>
-                          <input type="tel" required placeholder="+7 (___) ___-__-__" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:border-amber-500 focus:outline-none" />
+                          <label className="text-[10px] font-mono text-gray-300 uppercase font-bold">Номер телефона <span className="text-amber-500">*</span></label>
+                          <input type="tel" required placeholder="+7 (___) ___-__-__" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full bg-slate-950 border border-white/20 rounded-xl px-4 py-3 text-xs text-white placeholder-gray-500 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500" />
                         </div>
                       </div>
                       <div className="space-y-1">
-                        <label className="text-[10px] font-mono text-gray-400 uppercase font-bold">Тип услуги <span className="text-amber-500">*</span></label>
-                        <select required value={service} onChange={(e) => setService(e.target.value)} className="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:border-amber-500 focus:outline-none">
-                          <option value="" disabled>-- Выберите из списка --</option>
+                        <label className="text-[10px] font-mono text-gray-300 uppercase font-bold">Тип услуги <span className="text-amber-500">*</span></label>
+                        <select required value={service} onChange={(e) => setService(e.target.value)} className="w-full bg-slate-950 border border-white/20 rounded-xl px-4 py-3 text-xs text-white focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500">
+                          <option value="" disabled className="text-gray-500">-- Выберите из списка --</option>
                           <option value="road-construction">Строительство новых дорог</option>
                           <option value="road-paving">Асфальтирование дорог и тротуаров</option>
                           <option value="earthworks">Земляные работы, планировка</option>
@@ -963,8 +945,8 @@
                         </select>
                       </div>
                       <div className="space-y-1">
-                        <label className="text-[10px] font-mono text-gray-400 uppercase font-bold">Детали объекта (необязательно)</label>
-                        <textarea rows={2} placeholder="Приблизительный объем работ, площадь или местоположение..." value={comment} onChange={(e) => setComment(e.target.value)} className="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:border-amber-500 focus:outline-none" />
+                        <label className="text-[10px] font-mono text-gray-300 uppercase font-bold">Детали объекта (необязательно)</label>
+                        <textarea rows={2} placeholder="Приблизительный объем работ, площадь или местоположение..." value={comment} onChange={(e) => setComment(e.target.value)} className="w-full bg-slate-950 border border-white/20 rounded-xl px-4 py-3 text-xs text-white placeholder-gray-500 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500" />
                       </div>
                       <button type="submit" className="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-display font-black text-xs uppercase py-3.5 rounded-xl transition-all shadow-lg shadow-amber-500/10 flex items-center justify-center gap-2 cursor-pointer">
                         <LucideIcon name="Send" size={14} />
