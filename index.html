@@ -104,7 +104,7 @@
           id: "road-paving",
           title: "Асфальтирование дорог и тротуаров",
           description: "Высококлассная укладка асфальтобетонной смеси любой плотности и типа. Устройство новых и капитальный ремонт изношенных покрытий с бесшовным примыканием.",
-          iconName: "Flame",
+          iconName: "Layers",
           imageUrl: "https://images.unsplash.com/photo-1590069261209-f8e9b8642343?auto=format&fit=crop&w=800&q=80",
           includedWorks: [
             "Фрезерование старого деформированного слоя покрытия",
@@ -134,7 +134,7 @@
           id: "curb-installation",
           title: "Установка бортового камня",
           description: "Монтаж дорожных и тротуарных бордюров строго по отметкам нивелира на прочное бетонное основание с устройством замка.",
-          iconName: "Layers",
+          iconName: "Receipt",
           imageUrl: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=800&q=80",
           includedWorks: [
             "Разметка направления бордюрной линии нивелиром",
@@ -547,18 +547,26 @@
               </div>
             </section>
 
-            <section className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-              <div className="group relative h-[280px] sm:h-[320px] rounded-lg overflow-hidden shadow-lg border border-gray-100">
-                <img src="./images/card-process.jpg" alt="Дорожное полотно" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/30 to-transparent flex flex-col justify-end p-6 sm:p-8">
-                  <h3 className="text-white text-xl sm:text-2xl font-display font-black">Современное дорожное полотно</h3>
-                </div>
+            {/* Блок "Внутренний контроль качества" */}
+            <section className="space-y-6 sm:space-y-8">
+              <div className="text-center max-w-3xl mx-auto space-y-2 sm:space-y-3">
+                <h2 className="font-display font-black text-2xl sm:text-3xl text-slate-900">Внутренний контроль качества</h2>
+                <div className="h-1.5 w-16 bg-amber-500 mx-auto rounded-full" />
               </div>
 
-              <div className="group relative h-[280px] sm:h-[320px] rounded-lg overflow-hidden shadow-lg border border-gray-100">
-                <img src="./images/card-result.jpg" alt="Асфальтобетон" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/30 to-transparent flex flex-col justify-end p-6 sm:p-8">
-                  <h3 className="text-white text-xl sm:text-2xl font-display font-black">Ровное асфальтобетонное покрытие</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                <div className="group relative h-[280px] sm:h-[320px] rounded-lg overflow-hidden shadow-lg border border-gray-100 bg-slate-900">
+                  <img src="images/card-lab.jpg" alt="Лабораторный контроль" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/20 to-transparent flex flex-col justify-end p-6 sm:p-8">
+                    <h3 className="text-white text-xl sm:text-2xl font-display font-black">Лабораторный контроль</h3>
+                  </div>
+                </div>
+
+                <div className="group relative h-[280px] sm:h-[320px] rounded-lg overflow-hidden shadow-lg border border-gray-100 bg-slate-900">
+                  <img src="./images/card-result.jpg" alt="Геодезический контроль" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/20 to-transparent flex flex-col justify-end p-6 sm:p-8">
+                    <h3 className="text-white text-xl sm:text-2xl font-display font-black">Геодезический контроль</h3>
+                  </div>
                 </div>
               </div>
             </section>
@@ -620,7 +628,7 @@
         return (
           <div className="space-y-12 animate-fade-in-up">
             <div className="text-center max-w-3xl mx-auto space-y-4">
-              <h2 className="font-display font-black text-3xl text-slate-900">Наши дорожно-строительные услуги</h2>
+              <h2 className="font-display font-black text-3xl text-slate-900">Услуги</h2>
               <div className="h-1.5 w-16 bg-amber-500 mx-auto rounded-full" />
             </div>
 
@@ -727,19 +735,13 @@
           : PORTFOLIO_DATA.filter((p) => p.category.toLowerCase().includes(filter.toLowerCase().substring(0, 8)));
 
         return (
-          <div className="space-y-6 sm:space-y-12 animate-fade-in-up">
-            <div className="text-center max-w-3xl mx-auto space-y-2 sm:space-y-4">
-              <h2 className="font-display font-black text-2xl sm:text-3xl text-slate-900">Портфолио выполненных проектов</h2>
-              <p className="text-gray-600 text-xs sm:text-sm font-sans">Курганская область, город Шадринск и направления УрФО</p>
-              <div className="h-1.5 w-16 bg-amber-500 mx-auto rounded-full" />
-            </div>
-
-            <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 overflow-x-auto pb-1 scrollbar-none">
+          <div className="space-y-6 sm:space-y-8 animate-fade-in-up">
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-2 pb-1 scrollbar-none">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setFilter(cat)}
-                  className={`px-3.5 py-2 rounded-lg font-display font-bold text-xs uppercase tracking-wide border cursor-pointer ${
+                  className={`px-3.5 py-2.5 rounded-lg font-display font-bold text-xs uppercase tracking-wide border cursor-pointer text-center ${
                     filter === cat ? "bg-slate-900 text-amber-400 border-slate-900" : "bg-white text-slate-600 border-gray-150"
                   }`}
                 >
@@ -966,11 +968,7 @@
                 {activeTab === "portfolio" && <Portfolio />}
                 
                 {activeTab === "contacts" && (
-                  <div className="space-y-6 sm:space-y-8 animate-fade-in-up">
-                    <div className="text-center max-w-3xl mx-auto">
-                      <h2 className="font-display font-black text-xl sm:text-2xl text-slate-900 tracking-tight">Контактная информация ООО «ЭЛЬБРУС»</h2>
-                    </div>
-
+                  <div className="animate-fade-in-up">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
                       <div className="bg-white border border-gray-100 rounded-lg p-6 sm:p-8 shadow-sm flex flex-col justify-between">
                         <div className="space-y-5">
