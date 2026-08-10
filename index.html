@@ -575,31 +575,31 @@
                     <div className="h-48 w-full overflow-hidden bg-slate-950">
                       <img src={item.imageUrl} alt={item.title} className="w-full h-full object-cover object-center" />
                     </div>
-                    <div className="p-6 space-y-3 flex-1 flex flex-col justify-start">
+                    <div className="p-5 space-y-2 flex-1 flex flex-col justify-start">
                       <h3 className="font-display font-black text-lg sm:text-xl text-white leading-snug">{item.title}</h3>
-                      <p className="text-gray-400 font-sans text-xs sm:text-sm leading-relaxed">{item.description}</p>
+                      <p className="text-gray-300 font-sans text-sm leading-relaxed">{item.description}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </section>
 
-            <section className="bg-slate-900 rounded-lg p-8 sm:p-12 text-white shadow-xl">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <section className="bg-slate-900 rounded-lg py-5 sm:py-6 px-8 sm:px-12 text-white shadow-xl">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                 <div>
-                  <p className="text-4xl sm:text-5xl font-display font-black text-amber-500">12+</p>
+                  <p className="text-4xl sm:text-5xl font-display font-black text-amber-400">12+</p>
                   <p className="text-gray-400 text-xs uppercase tracking-wider font-display font-semibold mt-1">Лет опыта</p>
                 </div>
                 <div>
-                  <p className="text-4xl sm:text-5xl font-display font-black text-amber-500">450+</p>
+                  <p className="text-4xl sm:text-5xl font-display font-black text-amber-400">50+</p>
                   <p className="text-gray-400 text-xs uppercase tracking-wider font-display font-semibold mt-1">Объектов сдано</p>
                 </div>
                 <div>
-                  <p className="text-4xl sm:text-5xl font-display font-black text-amber-500">35 ед.</p>
+                  <p className="text-4xl sm:text-5xl font-display font-black text-amber-400">35 ед.</p>
                   <p className="text-gray-400 text-xs uppercase tracking-wider font-display font-semibold mt-1">Спецтехники</p>
                 </div>
                 <div>
-                  <p className="text-4xl sm:text-5xl font-display font-black text-amber-500">100%</p>
+                  <p className="text-4xl sm:text-5xl font-display font-black text-amber-400">100%</p>
                   <p className="text-gray-400 text-xs uppercase tracking-wider font-display font-semibold mt-1">ГОСТ гарантия</p>
                 </div>
               </div>
@@ -1012,48 +1012,40 @@
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
                       <div className="bg-white border border-gray-100 rounded-lg p-8 shadow-sm space-y-6 flex flex-col justify-between">
-                        <div className="space-y-4">
-                          <h3 className="font-display font-black text-xl text-slate-900">Административный офис</h3>
-                          <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
-                            Управление дорожно-строительными работами по Курганской области. Собственный штат специалистов и широкий спектр современной спецтехники для всех этапов дорожных работ.
-                          </p>
-                        </div>
-
-                        <div className="space-y-3 font-sans text-xs sm:text-sm text-gray-700">
-                          <div className="flex items-center space-x-2.5">
-                            <LucideIcon name="MapPin" className="h-4 w-4 text-amber-500" />
-                            <span>640022, Курганская обл., г. Курган, ул. Савельева, д. 58</span>
-                          </div>
-                          <div className="flex items-center space-x-2.5">
-                            <LucideIcon name="Phone" className="h-4 w-4 text-amber-500" />
-                            <span className="font-bold">+7 (3522) 55-04-76</span>
-                          </div>
+                        <div className="space-y-6">
+                          <h3 className="font-display font-black text-2xl text-slate-900">Административный офис</h3>
                           
-                          <div className="pt-3 border-t border-gray-100 font-mono text-xs text-gray-500 space-y-1">
-                            <div className="font-bold text-slate-900">ООО «ЭЛЬБРУС»</div>
-                            <div>ИНН: 4501194763 | ОГРН: 1144501003570</div>
+                          <div className="space-y-4 font-sans text-sm text-slate-800">
+                            <div className="flex items-start space-x-3">
+                              <LucideIcon name="MapPin" className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
+                              <span>640022, Курганская обл., г. Курган, ул. Савельева, д. 58</span>
+                            </div>
+                            <div className="flex items-start space-x-3">
+                              <LucideIcon name="Phone" className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
+                              <a href="tel:+73522550476" className="font-bold hover:text-amber-600 transition-colors">+7 (3522) 55-04-76</a>
+                            </div>
+                            <div className="flex items-start space-x-3">
+                              <LucideIcon name="Mail" className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
+                              <a href="mailto:elbrus-kurgan@yandex.ru" className="hover:text-amber-600 transition-colors">elbrus-kurgan@yandex.ru</a>
+                            </div>
+                            <div className="flex items-start space-x-3">
+                              <LucideIcon name="Clock" className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
+                              <span>Пн - Вс: 08:00 - 21:00</span>
+                            </div>
                           </div>
-                        </div>
 
-                        <div className="bg-amber-500/10 border border-amber-500/15 p-4 rounded-lg flex items-start space-x-2.5">
-                          <LucideIcon name="Truck" className="h-5 w-5 text-amber-600 shrink-0 mt-0.5" />
-                          <div>
-                            <span className="block font-display font-bold text-xs text-slate-900">Выезд инженера и замерщика по Зауралью</span>
-                            <span className="block text-[10px] text-slate-700 mt-1">Осуществляем оперативный выезд во все населенные пункты области бесплатно в рамках договорных отношений.</span>
+                          <div className="pt-6 border-t border-gray-100 font-sans text-sm text-slate-700 space-y-1">
+                            <div><strong>ИНН:</strong> 4501194763 &nbsp;|&nbsp; <strong>ОГРН:</strong> 1144501003570</div>
                           </div>
                         </div>
                       </div>
 
-                      <div className="bg-slate-900 rounded-lg p-8 shadow-sm text-white flex flex-col justify-between relative overflow-hidden min-h-[320px]">
-                        <div className="absolute inset-0 bg-cover bg-center brightness-40 pointer-events-none" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1542224566-6e85f2e6772f?auto=format&fit=crop&w=800&q=80')` }} />
-                        <div className="relative z-10 space-y-4">
-                          <span className="text-[9px] bg-amber-500/20 text-amber-400 font-mono font-bold px-3 py-1 rounded-full border border-amber-500/20 uppercase">Курган и Шадринск</span>
-                          <h3 className="font-display font-black text-xl sm:text-2xl text-white">Работаем по всей Курганской области.</h3>
-                          <p className="text-gray-300 text-xs leading-relaxed max-w-sm">Базирование спецтехники в ключевых узлах области обеспечивает быструю доставку смесей и экономию на перемещении техники.</p>
-                        </div>
-                        <div className="relative z-10 pt-4">
-                          <button onClick={() => document.getElementById("callback-form-box").scrollIntoView({ behavior: "smooth" })} className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-display font-black text-[10px] uppercase tracking-widest px-5 py-3 rounded-lg shadow-md">Вызвать замерщика</button>
-                        </div>
+                      <div className="bg-slate-900 rounded-lg overflow-hidden shadow-sm min-h-[360px] flex items-center justify-center border border-gray-100">
+                        <img 
+                          src="images/contact-map.jpg" 
+                          alt="Карта географии работ ООО ЭЛЬБРУС" 
+                          className="w-full h-full object-cover" 
+                        />
                       </div>
                     </div>
                   </div>
