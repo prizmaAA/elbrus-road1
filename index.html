@@ -82,7 +82,7 @@
       const { useState, useEffect } = React;
 
       // =========================================================
-      // НАБОРЫ ДАННЫХ ИЗ ФАЙЛА data.ts холдинга
+      // НАБОРЫ ДАННЫХ
       // =========================================================
       const SERVICES_DATA = [
         {
@@ -195,20 +195,20 @@
       const WHY_CHOOSE_US_DATA = [
         {
           id: "fair-price",
-          title: "Честная цена",
-          description: "Мы - конечные исполнители, а не звено в цепочке подрядчиков. Обращаясь к нам за услугами, гарантируем, что вы не переплатите.",
+          title: "Честная расценка",
+          description: "Работаем без посредников на собственном оборудовании. Фиксируем смету в договоре без скрытых надбавок.",
           iconName: "Receipt"
         },
         {
           id: "own-staff-and-fleet",
-          title: "Свой штат работников и парк техники",
-          description: "Можем взяться за проект любой сложности в кратчайшие сроки, т.к. нам не требуется время на поиск необходимых ресурсов.",
+          title: "Свой парк техники",
+          description: "35 единиц собственной спецтехники (катки, укладчики, самосвалы). Оперативный выезд на объект за 24 часа.",
           iconName: "Truck"
         },
         {
           id: "warranty-and-contract",
-          title: "Гарантия до 5 лет и работа по договору",
-          description: "Работаем на совесть: стараемся все делать надежно и долговечно. А чтобы вы чувствовали себя уверенно, мы даем гарантию на все выполненные работы.",
+          title: "Гарантия по ГОСТ до 5 лет",
+          description: "Полное соответствие СНиП и ГОСТ. Лабораторный контроль уплотнения смеси на каждом этапе работ.",
           iconName: "ShieldCheck"
         }
       ];
@@ -216,42 +216,42 @@
       const PORTFOLIO_DATA = [
         {
           id: "port-1",
-          title: "Реконструкция участков федеральной трассы Р-254 «Иртыш»",
-          category: "Строительство дорог",
-          description: "Устройство многослойного прочного основания, укладка модифицированного щебеночно-мастичного асфальтобетона (ЩМА), обустройство обочин, установка сигнальных столбиков и нанесение термопластиковой горизонтальной разметки.",
-          location: "Курганская область",
-          year: "2025 г.",
-          area: "42 000 кв. м",
-          imageUrl: "https://images.unsplash.com/photo-1599741355490-48247ca8f34f?auto=format&fit=crop&w=1200&q=80"
-        },
-        {
-          id: "port-2",
-          title: "Капитальный ремонт дорог по улицам Савельева и Коли Мяготина",
+          title: "Ремонт улично-дорожной сети по ул. Гоголя и ул. К. Маркса",
           category: "Асфальтирование",
-          description: "Фрезерование изноженного дорожного полотна, выравнивание деформационных дефектов, укладка двух слоев прочной асфальтобетонной смеси и полная замена бортового камня на гранитный аналог.",
+          description: "Фрезерование изношенного слоя, устройство выравнивающего слоя из мелкозернистого асфальтобетона, замена бортового камня и герметизация швов.",
           location: "г. Курган",
           year: "2025 г.",
-          area: "24 500 кв. м",
+          area: "18 500 кв. м",
           imageUrl: "https://images.unsplash.com/photo-1590069261209-f8e9b8642343?auto=format&fit=crop&w=1200&q=80"
         },
         {
+          id: "port-2",
+          title: "Капитальный ремонт проездов по ул. Станционной",
+          category: "Строительство дорог",
+          description: "Устройство щебеночного основания фракции 20-40, проливка битумной эмульсией, укладка двух слоев горячего асфальтобетона, устройство дождеприемных колодцев.",
+          location: "г. Курган",
+          year: "2025 г.",
+          area: "12 200 кв. м",
+          imageUrl: "https://images.unsplash.com/photo-1599741355490-48247ca8f34f?auto=format&fit=crop&w=1200&q=80"
+        },
+        {
           id: "port-3",
-          title: "Благоустройство сквера Победы и ландшафтного парка",
+          title: "Благоустройство пешеходной зоны и сквера",
           category: "Благоустройство территорий",
-          description: "Снятие старого деформированного покрытия, планировка территории, укладка фигурной тротуарной плитки на пешеходных дорожках, создание искусственных микрорельефов парка и посадка зеленых насаждений.",
-          location: "г. Шадринск, Курганская обл.",
+          description: "Выравнивание ландшафта, геодезическая разбивка, укладка вибропрессованной тротуарной плитки, установка садового бордюра и устройство газонов.",
+          location: "г. Шадринск",
           year: "2024 г.",
-          area: "14 800 кв. м",
+          area: "8 400 кв. м",
           imageUrl: "https://images.unsplash.com/photo-1598902108854-10e335adac99?auto=format&fit=crop&w=1200&q=80"
         },
         {
           id: "port-4",
-          title: "Разработка котлована под фундамент жилого комплекса по ул. Климова",
+          title: "Разработка котлована и выемка грунта под промплощадку",
           category: "Земляные работы",
-          description: "Комплексная геодезическая разбивка, послойная выемка грунта экскаваторами объемом свыше 45 000 м3, погрузка и вывоз грунта на сертифицированные полигоны утилизации собственными самосвалами.",
-          location: "г. Курган",
+          description: "Выемка грунта экскаваторами объемом 32 000 м³, послойное уплотнение тяжелыми катками, вывоз и официальная утилизация на полигоне.",
+          location: "Промзона г. Курган",
           year: "2024 г.",
-          area: "18 000 кв. м",
+          area: "15 000 кв. м",
           imageUrl: "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=1200&q=80"
         }
       ];
@@ -514,7 +514,7 @@
               {bgImages.map((img, index) => (
                 <div
                   key={img}
-                  className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out ${
+                  className={`absolute inset-0 bg-cover bg-[position:80%_center] sm:bg-center transition-opacity duration-1000 ease-in-out ${
                     index === currentBgIndex ? "opacity-100" : "opacity-0"
                   }`}
                   style={{ backgroundImage: `url('${img}')` }}
@@ -523,11 +523,6 @@
 
               <div className="relative z-20 px-6 sm:px-12 py-16 sm:py-20 max-w-7xl mx-auto w-full flex flex-col items-center md:items-start text-center md:text-left">
                 <div className="max-w-2xl space-y-6 md:space-y-8">
-                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/70 text-slate-200 border border-white/10 text-xs font-semibold tracking-wider uppercase backdrop-blur-md shadow-lg">
-                    <LucideIcon name="ShieldCheck" className="h-4 w-4 text-amber-400" />
-                    Лидеры дорожного строительства
-                  </div>
-                  
                   <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl text-white tracking-tight leading-tight text-glow">
                     Надежные дороги для <br className="hidden sm:inline" /> <span className="text-amber-400 drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">будущего</span> поколения
                   </h1>
@@ -567,19 +562,23 @@
               </div>
             </section>
 
-            <section className="bg-white border border-gray-100 rounded-3xl p-8 sm:p-12 shadow-sm">
-              <div className="text-center mb-10">
-                <h2 className="font-display font-black text-3xl text-slate-900">Почему выбирают нашу компанию</h2>
-                <div className="h-1.5 w-16 bg-amber-500 mx-auto mt-4 rounded-full" />
+            {/* Обновленный блок "Почему выбирают" */}
+            <section className="space-y-8">
+              <div className="text-center max-w-3xl mx-auto space-y-3">
+                <h2 className="font-display font-black text-3xl text-slate-900">Почему выбирают ООО «ЭЛЬБРУС»</h2>
+                <div className="h-1.5 w-16 bg-amber-500 mx-auto rounded-full" />
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {WHY_CHOOSE_US_DATA.map((item) => (
-                  <div key={item.id} className="bg-slate-50 border border-gray-100 rounded-2xl p-6 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow">
-                    <div className="h-14 w-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-600 flex items-center justify-center mb-4">
-                      <LucideIcon name={item.iconName} className="h-7 w-7" />
+                  <div key={item.id} className="bg-slate-900 border border-white/10 rounded-3xl p-8 text-white space-y-4 hover:border-amber-500/30 transition-all shadow-xl flex flex-col justify-between">
+                    <div className="space-y-4">
+                      <div className="h-12 w-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-500 flex items-center justify-center">
+                        <LucideIcon name={item.iconName} className="h-6 w-6" />
+                      </div>
+                      <h3 className="font-display font-black text-xl text-white leading-snug">{item.title}</h3>
+                      <p className="text-gray-400 font-sans text-xs sm:text-sm leading-relaxed">{item.description}</p>
                     </div>
-                    <h3 className="font-display font-black text-lg text-slate-900 mb-2">{item.title}</h3>
-                    <p className="text-gray-600 font-sans text-xs sm:text-sm leading-relaxed">{item.description}</p>
                   </div>
                 ))}
               </div>
@@ -728,7 +727,7 @@
           <div className="space-y-12 animate-fade-in-up">
             <div className="text-center max-w-3xl mx-auto space-y-4">
               <h2 className="font-display font-black text-3xl text-slate-900">Портфолио выполненных проектов</h2>
-              <p className="text-gray-600 text-xs sm:text-sm font-sans">Курганская область, город Шадринск и федеральные направления</p>
+              <p className="text-gray-600 text-xs sm:text-sm font-sans">Курганская область, город Шадринск и направления УрФО</p>
               <div className="h-1.5 w-16 bg-amber-500 mx-auto rounded-full" />
             </div>
 
