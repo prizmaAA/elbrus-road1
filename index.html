@@ -66,6 +66,13 @@
       }
       .scrollbar-none::-webkit-scrollbar { display: none; }
       .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+      .text-glow {
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9), 0 4px 25px rgba(0, 0, 0, 0.85);
+      }
+      .subtext-glow {
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+      }
     </style>
   </head>
   <body class="bg-[#F8F9FA] text-[#1F2937] antialiased selection:bg-amber-500 selection:text-slate-950">
@@ -533,25 +540,26 @@
                 />
               ))}
 
-              <div className="absolute inset-0 bg-slate-950/80 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-950/60 pointer-events-none z-10" />
-
               <div className="relative z-20 px-6 py-16 sm:py-20 md:py-24 max-w-5xl mx-auto text-center space-y-8">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-500 border border-amber-500/25 text-xs font-semibold tracking-wider uppercase">
-                  <LucideIcon name="Star" className="h-3.5 w-3.5 fill-current text-amber-500" />
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/70 text-amber-400 border border-amber-500/30 text-xs font-semibold tracking-wider uppercase backdrop-blur-md shadow-lg">
+                  <LucideIcon name="Star" className="h-3.5 w-3.5 fill-current text-amber-400" />
                   Лидеры дорожного строительства
                 </div>
-                <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl text-white tracking-tight leading-tight max-w-4xl mx-auto">
-                  Надёжные дороги для <br className="hidden sm:inline" /> <span className="text-amber-500">будущего</span> поколения
+                
+                <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl text-white tracking-tight leading-tight max-w-4xl mx-auto text-glow">
+                  Надёжные дороги для <br className="hidden sm:inline" /> <span className="text-amber-400 drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">будущего</span> поколения
                 </h1>
-                <p className="text-gray-300 text-lg sm:text-xl max-w-3xl mx-auto font-sans leading-relaxed">
+                
+                <p className="text-gray-100 text-lg sm:text-xl max-w-3xl mx-auto font-sans leading-relaxed subtext-glow font-medium">
                   Профессиональное строительство и капитальный ремонт дорог любой сложности, асфальтирование и благоустройство территорий по стандартам ГОСТ. Собственный парк техники.
                 </p>
+
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2">
-                  <button onClick={onExploreServices} className="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-slate-950 font-display font-black text-sm px-8 py-4 rounded-xl shadow-lg shadow-amber-500/25 flex items-center justify-center gap-2 cursor-pointer">
+                  <button onClick={onExploreServices} className="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-slate-950 font-display font-black text-sm px-8 py-4 rounded-xl shadow-2xl shadow-black/80 flex items-center justify-center gap-2 cursor-pointer transform hover:-translate-y-0.5 transition-all">
                     Наши услуги
                     <LucideIcon name="ArrowRight" className="h-4 w-4" />
                   </button>
-                  <button onClick={onExplorePortfolio} className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-xl font-display font-bold text-sm cursor-pointer backdrop-blur-sm">
+                  <button onClick={onExplorePortfolio} className="w-full sm:w-auto bg-slate-950/70 hover:bg-slate-950/90 text-white border border-white/30 px-8 py-4 rounded-xl font-display font-bold text-sm cursor-pointer backdrop-blur-md shadow-2xl transition-all">
                     Примеры работ
                   </button>
                 </div>
