@@ -26,7 +26,7 @@
                 200: '#fde68a',
                 300: '#fcd34d',
                 400: '#fbbf24',
-                500: '#f59e0b', // Основной янтарный
+                500: '#f59e0b',
                 600: '#d97706', 
                 700: '#b45309',
                 800: '#92400e',
@@ -34,8 +34,8 @@
               },
               slate: {
                 50: '#F8F9FA',  
-                900: '#1F2937', // Тёмный графит
-                950: '#0B0F19', // Почти чёрный для фонов
+                900: '#1F2937', 
+                950: '#0B0F19', 
               }
             },
             fontFamily: {
@@ -74,11 +74,11 @@
         text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
       }
       .logo-e-contour {
-        text-shadow: -1px -1px 0 #1F2937, 1px -1px 0 #1F2937, -1px 1px 0 #1F2937, 1px 1px 0 #1F2937;
+        text-shadow: -1px -1px 0 #0F172A, 1px -1px 0 #0F172A, -1px 1px 0 #0F172A, 1px 1px 0 #0F172A;
       }
     </style>
   </head>
-  <body class="bg-[#F8F9FA] text-[#1F2937] antialiased selection:bg-amber-500 selection:text-slate-950 overflow-x-hidden">
+  <body class="bg-[#F8F9FA] text-[#1F2937] antialiased selection:bg-amber-500 selection:text-slate-950">
     <div id="root"></div>
 
     <script type="text/babel">
@@ -143,7 +143,7 @@
             "Разметка направления бордюрной линии нивелиром",
             "Разработка траншеи под основание бортового камня",
             "Устройство бетонной постели из прочного раствора M200",
-            "Установка дорожных (БР 100.30.15) or тротуарных камней",
+            "Установка дорожных (БР 100.30.15) или тротуарных камней",
             "Устройство бетонного замка с обеих сторон бордюра",
             "Заделка и затирка швов цементным раствором"
           ]
@@ -204,13 +204,13 @@
         },
         {
           id: "own-staff-and-fleet",
-          title: "Свой штат и парк техники",
+          title: "Свой парк техники",
           description: "35 единиц собственной спецтехники (катки, укладчики, самосвалы). Оперативный выезд на объект за 24 часа.",
           iconName: "Truck"
         },
         {
           id: "warranty-and-contract",
-          title: "Гарантия до 5 лет",
+          title: "Гарантия по ГОСТ до 5 лет",
           description: "Полное соответствие СНиП и ГОСТ. Лабораторный контроль уплотнения смеси на каждом этапе работ.",
           iconName: "ShieldCheck"
         }
@@ -401,12 +401,6 @@
             <svg viewBox="0 0 24 24" style={styles} className={className}>
               <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
             </svg>
-          ),
-          Ruler: (
-            <svg viewBox="0 0 24 24" style={styles} className={className}>
-              <path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.4 2.4 0 0 1 0-3.4L5.3 2.7a2.4 2.4 0 0 1 3.4 0L21.3 15.3Z"/>
-              <path d="M16 8l-2 2"/><path d="M13 5l-2 2"/><path d="M10 2l-2 2"/>
-            </svg>
           )
         };
 
@@ -461,15 +455,15 @@
                 </nav>
 
                 <div className="hidden lg:flex items-center">
-                  <a href="tel:+73522550476" className="flex items-center space-x-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-5 py-3 rounded-xl transition-all shadow-sm cursor-pointer border-2 border-slate-900 rounded-xl">
+                  <a href="tel:+73522550476" className="flex items-center space-x-2 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-5 py-3 rounded-xl transition-all shadow-sm cursor-pointer">
                     <LucideIcon name="Phone" className="h-4 w-4" />
                     <span className="font-display text-sm font-black">+7 (3522) 55-04-76</span>
                   </a>
                 </div>
 
-                <div className="md:hidden flex items-center h-20 sm:h-24">
-                  <button onClick={() => setIsOpen(!isOpen)} className="p-3 rounded-xl bg-amber-500 text-slate-950 shadow-md border-2 border-slate-900">
-                    {isOpen ? <LucideIcon name="X" className="h-7 w-7" /> : <LucideIcon name="Menu" className="h-7 w-7" />}
+                <div className="md:hidden flex items-center">
+                  <button onClick={() => setIsOpen(!isOpen)} className="p-2 rounded-xl bg-slate-50 text-slate-700">
+                    {isOpen ? <LucideIcon name="X" className="h-6 w-6" /> : <LucideIcon name="Menu" className="h-6 w-6" />}
                   </button>
                 </div>
               </div>
@@ -488,6 +482,10 @@
                     {item.label}
                   </button>
                 ))}
+                <a href="tel:+73522550476" className="flex items-center justify-center space-x-2 w-full bg-amber-500 text-slate-900 font-bold py-3 rounded-xl text-center">
+                  <LucideIcon name="Phone" className="h-4 w-4" />
+                  <span className="font-display text-sm">+7 (3522) 55-04-76</span>
+                </a>
               </div>
             )}
           </header>
@@ -620,7 +618,8 @@
       // УСЛУГИ (Services)
       // =========================================================
       function Services() {
-        const [activeId, setActiveId] = useState(""); // Все вкладки изначально закрыты
+        const [activeId, setActiveId] = useState(SERVICES_DATA[0].id);
+        const active = SERVICES_DATA.find((s) => s.id === activeId) || SERVICES_DATA[0];
 
         return (
           <div className="space-y-12 animate-fade-in-up">
@@ -629,35 +628,90 @@
               <div className="h-1.5 w-16 bg-amber-500 mx-auto rounded-full" />
             </div>
 
-            <div className="space-y-3">
-              {SERVICES_DATA.map((s) => {
-                const isOpen = activeId === s.id;
-                return (
-                  <div key={s.id} className={`border rounded-2xl sm:rounded-3xl overflow-hidden transition-all duration-300 ${isOpen ? "border-amber-500/40 bg-slate-950" : "border-gray-200 bg-white"}`}>
-                    <button onClick={() => setActiveId(isOpen ? "" : s.id)} className={`w-full flex items-center justify-between text-left px-5 sm:px-8 py-5 font-display font-bold text-sm sm:text-base ${isOpen ? "bg-amber-500 text-slate-950 font-black" : "text-slate-800"}`}>
-                      <span className="flex items-center space-x-3 sm:space-x-4">
-                        <LucideIcon name={s.iconName} className={isOpen ? "text-slate-950" : "text-amber-500"} size={18} smSize={22} />
+            <div className="bg-slate-950 rounded-3xl overflow-hidden shadow-2xl border border-slate-900">
+              <div className="hidden lg:grid lg:grid-cols-12 gap-8 p-10 bg-slate-950 items-start">
+                <div className="space-y-2 lg:col-span-5">
+                  {SERVICES_DATA.map((s) => (
+                    <button
+                      key={s.id}
+                      onClick={() => setActiveId(s.id)}
+                      className={`w-full flex items-center justify-between text-left px-5 py-4 rounded-2xl font-display font-bold text-sm tracking-wide uppercase border transition-all ${
+                        activeId === s.id ? "bg-amber-500 text-slate-950 border-amber-500 font-black" : "bg-slate-900/40 text-slate-300 border-white/5 hover:bg-slate-900 hover:text-white"
+                      }`}
+                    >
+                      <div className="flex items-center space-x-3">
+                        <LucideIcon name={s.iconName} className={activeId === s.id ? "text-slate-950" : "text-amber-500"} size={20} />
                         <span>{s.title}</span>
-                      </span>
-                      <LucideIcon name="ChevronDown" size={16} smSize={20} />
-                    </button>
-                    {isOpen && (
-                      <div className="p-6 sm:p-10 text-white space-y-6 border-t border-white/10 animate-fade-in-up">
-                        <p className="text-gray-300 text-sm sm:text-base leading-relaxed">{s.description}</p>
-                        <hr className="border-white/10" />
-                        <ul className="space-y-2 text-sm text-gray-300">
-                          {s.includedWorks?.map((w, idx) => (
-                            <li key={idx} className="flex items-start space-x-2">
-                              <LucideIcon name="CheckCircle2" className="h-4 w-4 text-amber-500 shrink-0 mt-0.5" />
-                              <span>{w}</span>
-                            </li>
-                          ))}
-                        </ul>
                       </div>
-                    )}
+                      <LucideIcon name="ArrowRight" size={16} />
+                    </button>
+                  ))}
+                </div>
+
+                <div className="lg:col-span-7 bg-slate-900 border border-white/5 rounded-3xl p-8 text-white min-h-[460px] flex flex-col justify-between">
+                  <div className="space-y-6">
+                    <div className="flex items-center space-x-4">
+                      <div className="h-12 w-12 bg-amber-500/10 text-amber-500 rounded-xl flex items-center justify-center border border-amber-500/20">
+                        <LucideIcon name={active.iconName} className="h-6 w-6" />
+                      </div>
+                      <div>
+                        <h3 className="font-display font-black text-xl text-white">{active.title}</h3>
+                        <span className="text-gray-400 font-mono text-xs">Строго по СНиП и ГОСТ</span>
+                      </div>
+                    </div>
+                    <p className="text-gray-300 font-sans text-sm leading-relaxed">{active.description}</p>
+                    <hr className="border-white/5" />
+                    <div className="space-y-3">
+                      <span className="block text-xs font-mono uppercase tracking-wider text-amber-500 font-bold">Включает в себя работы:</span>
+                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-300">
+                        {active.includedWorks?.map((work, idx) => (
+                          <li key={idx} className="flex items-start space-x-2">
+                            <LucideIcon name="CheckCircle2" className="h-4 w-4 text-amber-500 shrink-0 mt-0.5" />
+                            <span>{work}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                );
-              })}
+                  <div className="pt-6 border-t border-white/5 mt-6">
+                    <button onClick={() => document.getElementById("callback-form-box").scrollIntoView({ behavior: "smooth" })} className="inline-flex items-center gap-2 text-amber-500 hover:text-amber-400 font-display font-bold text-xs uppercase tracking-wide">
+                      <span>Рассчитать стоимость объекта</span>
+                      <LucideIcon name="ArrowRight" className="h-3 w-3" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Мобильная версия аккордеонов */}
+              <div className="block lg:hidden p-5 space-y-3 bg-slate-950">
+                {SERVICES_DATA.map((s) => {
+                  const isOpen = activeId === s.id;
+                  return (
+                    <div key={s.id} className={`border rounded-xl overflow-hidden transition-all duration-300 ${isOpen ? "border-amber-500/40 bg-slate-900" : "border-white/5 bg-slate-900/40"}`}>
+                      <button onClick={() => setActiveId(isOpen ? "" : s.id)} className={`w-full flex items-center justify-between text-left px-5 py-4 font-display font-bold text-sm ${isOpen ? "bg-amber-500 text-slate-950 font-black" : "text-slate-300"}`}>
+                        <span className="flex items-center space-x-3">
+                          <LucideIcon name={s.iconName} className={isOpen ? "text-slate-950" : "text-amber-500"} size={18} />
+                          <span>{s.title}</span>
+                        </span>
+                        <LucideIcon name="ChevronDown" size={16} />
+                      </button>
+                      {isOpen && (
+                        <div className="p-5 text-white space-y-4 border-t border-white/5 animate-fade-in-up">
+                          <p className="text-gray-300 text-xs leading-relaxed">{s.description}</p>
+                          <ul className="space-y-2 text-xs text-gray-300">
+                            {s.includedWorks?.map((w, idx) => (
+                              <li key={idx} className="flex items-start space-x-2">
+                                <LucideIcon name="CheckCircle2" className="h-3.5 w-3.5 text-amber-500 shrink-0 mt-0.5" />
+                                <span>{w}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         );
@@ -699,7 +753,7 @@
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8" id="portfolio-grid">
               {filtered.map((p) => (
-                <div key={p.id} className="bg-white border border-gray-100 rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col h-full">
+                <div key={p.id} className="bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col h-full">
                   <div className="relative h-56 sm:h-64 overflow-hidden bg-slate-100">
                     <img src={p.imageUrl} alt={p.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                     <div className="absolute top-4 left-4">
@@ -798,66 +852,15 @@
 
         return (
           <footer className="bg-slate-950 text-gray-400 font-sans pt-12 sm:pt-16 pb-8 border-t border-slate-900 rounded-t-[32px] mt-12 sm:mt-16">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12 overflow-hidden">
-              <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
+              <div className="flex flex-col-reverse lg:grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
                 
-                {/* Форма заявки - ПЕРВАЯ на мобильных */}
-                <div id="callback-form-box" className="lg:col-span-7 bg-slate-900 border border-white/10 -mx-4 sm:mx-0 rounded-none sm:rounded-3xl p-6 sm:p-10 space-y-6 w-[calc(100%+2rem)] sm:w-full">
-                  <div className="space-y-1">
-                    <h3 className="font-display font-black text-xl sm:text-2xl text-white">Заказать профессиональный расчёт</h3>
-                    <p className="text-gray-300 text-xs sm:text-sm">Бесплатный выезд инженера-геодезиста на ваш объект. Свяжемся с вами в течение 15 минут.</p>
-                  </div>
-
-                  {submitted ? (
-                    <div className="bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 p-6 rounded-2xl space-y-3 animate-fade-in-up">
-                      <h4 className="font-display font-bold text-md">✓ Заявка успешно принята в обработку</h4>
-                      <p className="text-xs text-gray-300">Наш специалист созвонится с вами по указанному телефону в кратчайшие сроки.</p>
-                      <button onClick={() => setSubmitted(false)} className="text-emerald-400 hover:text-emerald-300 font-display font-bold text-xs underline cursor-pointer">Отправить ещё одну заявку</button>
-                    </div>
-                  ) : (
-                    <form onSubmit={handleSubmit} id="callback-form" className="space-y-5">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                        <div className="space-y-1.5">
-                          <label className="text-xs sm:text-sm font-sans text-gray-200 font-semibold">Ваше имя <span className="text-amber-500">*</span></label>
-                          <input type="text" required placeholder="Имя" value={name} onChange={(e) => setName(e.target.value)} className="w-full bg-slate-950 border border-white/20 rounded-xl px-5 py-4 text-sm sm:text-base text-white placeholder-gray-500 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500" />
-                        </div>
-                        <div className="space-y-1.5">
-                          <label className="text-xs sm:text-sm font-sans text-gray-200 font-semibold">Номер телефона <span className="text-amber-500">*</span></label>
-                          <input type="tel" required placeholder="+7 (___) ___-__-__" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full bg-slate-950 border border-white/20 rounded-xl px-5 py-4 text-sm sm:text-base text-white placeholder-gray-500 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500" />
-                        </div>
-                      </div>
-                      <div className="space-y-1.5">
-                        <label className="text-xs sm:text-sm font-sans text-gray-200 font-semibold">Тип услуги <span className="text-amber-500">*</span></label>
-                        <select required value={service} onChange={(e) => setService(e.target.value)} className="w-full bg-slate-950 border border-white/20 rounded-xl px-5 py-4 text-sm sm:text-base text-white focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500">
-                          <option value="" disabled className="text-gray-500">-- Выберите из списка --</option>
-                          <option value="road-construction">Строительство новых дорог</option>
-                          <option value="road-paving">Асфальтирование дорог и тротуаров</option>
-                          <option value="earthworks">Земляные работы, планировка</option>
-                          <option value="curb-installation">Установка бортовых камней</option>
-                          <option value="landscaping">Благоустройство территорий и парков</option>
-                          <option value="excavation">Разработка котлованов</option>
-                          <option value="road-marking">Профессиональная разметка дорог</option>
-                        </select>
-                      </div>
-                      <div className="space-y-1.5">
-                        <label className="text-xs sm:text-sm font-sans text-gray-200 font-semibold">Детали объекта (необязательно)</label>
-                        <textarea rows={2} placeholder="Приблизительный объем работ, площадь или местоположение..." value={comment} onChange={(e) => setComment(e.target.value)} className="w-full bg-slate-950 border border-white/20 rounded-xl px-5 py-4 text-sm sm:text-base text-white placeholder-gray-500 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500" />
-                      </div>
-                      <button type="submit" className="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-display font-black text-xs sm:text-sm uppercase py-4 sm:py-5 rounded-xl transition-all shadow-lg shadow-amber-500/10 flex items-center justify-center gap-2 cursor-pointer mt-2">
-                        <LucideIcon name="Send" size={16} />
-                        Отправить заявку на замер
-                      </button>
-                      <span className="block text-[10px] sm:text-xs text-gray-500 leading-normal text-center pt-1">Нажимая кнопку, вы даете согласие на обработку данных по ФЗ № 152.</span>
-                    </form>
-                  )}
-                </div>
-
-                {/* Левая инфо-колонка - НИЖЕ на мобильных */}
-                <div className="lg:col-span-5 space-y-8 w-full mt-8 lg:mt-0">
+                {/* Левая инфо-колонка */}
+                <div className="lg:col-span-5 space-y-8 w-full">
                   <div className="space-y-4">
                     <div>
-                      <span className="block font-display font-black text-xl sm:text-2xl text-white tracking-tight leading-tight logo-e-contour">
-                        <span className="text-amber-500 font-black text-2xl sm:text-3xl">Э</span>ЛЬБРУС
+                      <span className="block font-display font-black text-xl sm:text-2xl text-white tracking-tight">
+                        <span className="text-amber-500 font-black text-2xl sm:text-3xl logo-e-contour">Э</span>ЛЬБРУС
                       </span>
                     </div>
                     <p className="text-gray-400 text-xs sm:text-sm leading-relaxed max-w-sm">
@@ -906,6 +909,57 @@
                       <span className="block text-[10px] text-gray-500 mt-0.5">Полный перечень допусков на крупное дорожное строительство.</span>
                     </div>
                   </div>
+                </div>
+
+                {/* Интерактивная форма заявки */}
+                <div id="callback-form-box" className="lg:col-span-7 bg-slate-900 border border-white/10 rounded-3xl p-6 sm:p-8 space-y-6 w-full">
+                  <div className="space-y-1">
+                    <h3 className="font-display font-black text-xl sm:text-2xl text-white">Заказать профессиональный расчёт</h3>
+                    <p className="text-gray-300 text-xs sm:text-sm">Бесплатный выезд инженера-геодезиста на ваш объект. Свяжемся с вами в течение 15 минут.</p>
+                  </div>
+
+                  {submitted ? (
+                    <div className="bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 p-6 rounded-2xl space-y-3 animate-fade-in-up">
+                      <h4 className="font-display font-bold text-md">✓ Заявка успешно принята в обработку</h4>
+                      <p className="text-xs text-gray-300">Наш специалист созвонится с вами по указанному телефону в кратчайшие сроки.</p>
+                      <button onClick={() => setSubmitted(false)} className="text-emerald-400 hover:text-emerald-300 font-display font-bold text-xs underline cursor-pointer">Отправить ещё одну заявку</button>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleSubmit} id="callback-form" className="space-y-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div className="space-y-1.5">
+                          <label className="text-xs sm:text-sm font-sans text-gray-200 font-semibold">Ваше имя <span className="text-amber-500">*</span></label>
+                          <input type="text" required placeholder="Имя" value={name} onChange={(e) => setName(e.target.value)} className="w-full bg-slate-950 border border-white/20 rounded-xl px-4 py-3.5 text-sm text-white placeholder-gray-500 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500" />
+                        </div>
+                        <div className="space-y-1.5">
+                          <label className="text-xs sm:text-sm font-sans text-gray-200 font-semibold">Номер телефона <span className="text-amber-500">*</span></label>
+                          <input type="tel" required placeholder="+7 (___) ___-__-__" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full bg-slate-950 border border-white/20 rounded-xl px-4 py-3.5 text-sm text-white placeholder-gray-500 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500" />
+                        </div>
+                      </div>
+                      <div className="space-y-1.5">
+                        <label className="text-xs sm:text-sm font-sans text-gray-200 font-semibold">Тип услуги <span className="text-amber-500">*</span></label>
+                        <select required value={service} onChange={(e) => setService(e.target.value)} className="w-full bg-slate-950 border border-white/20 rounded-xl px-4 py-3.5 text-sm text-white focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500">
+                          <option value="" disabled className="text-gray-500">-- Выберите из списка --</option>
+                          <option value="road-construction">Строительство новых дорог</option>
+                          <option value="road-paving">Асфальтирование дорог и тротуаров</option>
+                          <option value="earthworks">Земляные работы, планировка</option>
+                          <option value="curb-installation">Установка бортовых камней</option>
+                          <option value="landscaping">Благоустройство территорий и парков</option>
+                          <option value="excavation">Разработка котлованов</option>
+                          <option value="road-marking">Профессиональная разметка дорог</option>
+                        </select>
+                      </div>
+                      <div className="space-y-1.5">
+                        <label className="text-xs sm:text-sm font-sans text-gray-200 font-semibold">Детали объекта (необязательно)</label>
+                        <textarea rows={2} placeholder="Приблизительный объем работ, площадь или местоположение..." value={comment} onChange={(e) => setComment(e.target.value)} className="w-full bg-slate-950 border border-white/20 rounded-xl px-4 py-3.5 text-sm text-white placeholder-gray-500 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500" />
+                      </div>
+                      <button type="submit" className="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-display font-black text-xs sm:text-sm uppercase py-4 rounded-xl transition-all shadow-lg shadow-amber-500/10 flex items-center justify-center gap-2 cursor-pointer mt-2">
+                        <LucideIcon name="Send" size={16} />
+                        Отправить заявку на замер
+                      </button>
+                      <span className="block text-[10px] sm:text-xs text-gray-500 leading-normal text-center pt-1">Нажимая кнопку, вы даете согласие на обработку данных по ФЗ № 152.</span>
+                    </form>
+                  )}
                 </div>
               </div>
 
@@ -973,56 +1027,48 @@
                 {activeTab === "contacts" && (
                   <div className="space-y-12 animate-fade-in-up">
                     <div className="text-center max-w-3xl mx-auto space-y-4">
-                      <h2 className="font-display font-black text-3xl text-slate-900 tracking-tight leading-tight">Контактная информация ООО «ЭЛЬБРУС»</h2>
+                      <h2 className="font-display font-black text-3xl text-slate-900 tracking-tight">Контактная информация ООО «ЭЛЬБРУС»</h2>
                       <div className="h-1.5 w-16 bg-amber-500 mx-auto rounded-full" />
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
                       <div className="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm space-y-6 flex flex-col justify-between">
                         <div className="space-y-4">
-                          <h3 className="font-display font-black text-2xl text-slate-900">Административный офис</h3>
-                          <p className="text-gray-600 text-sm leading-relaxed font-sans">
+                          <h3 className="font-display font-black text-xl text-slate-900">Административный офис</h3>
+                          <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
                             Управление дорожно-строительными работами по Курганской области. Собственный штат специалистов и широкий спектр современной спецтехники для всех этапов дорожных работ.
                           </p>
                         </div>
 
-                        <div className="space-y-3 font-sans text-sm text-gray-700">
+                        <div className="space-y-3 font-sans text-xs sm:text-sm text-gray-700">
                           <div className="flex items-center space-x-2.5">
-                            <LucideIcon name="MapPin" className="h-5 w-5 text-amber-500" />
+                            <LucideIcon name="MapPin" className="h-4 w-4 text-amber-500" />
                             <span>640022, Курганская обл., г. Курган, ул. Савельева, д. 58</span>
                           </div>
                           <div className="flex items-center space-x-2.5">
-                            <LucideIcon name="Phone" className="h-5 w-5 text-amber-500" />
+                            <LucideIcon name="Phone" className="h-4 w-4 text-amber-500" />
                             <span className="font-bold">+7 (3522) 55-04-76</span>
                           </div>
                         </div>
 
-                        {/* Переработанный блок с крупным шрифтом и новой иконкой */}
-                        <div className="bg-amber-500/10 border border-amber-500/15 p-6 rounded-2xl flex items-start space-x-3.5">
-                          <LucideIcon name="Ruler" className="h-9 w-9 text-amber-600 shrink-0 mt-0.5" />
+                        <div className="bg-amber-500/10 border border-amber-500/15 p-4 rounded-xl flex items-start space-x-2.5">
+                          <LucideIcon name="Truck" className="h-5 w-5 text-amber-600 shrink-0 mt-0.5" />
                           <div>
-                            <span className="block font-display font-black text-lg text-slate-900 leading-snug">Выезд инженера и замерщика по Зауралью</span>
-                            <span className="block text-sm text-slate-800 mt-1 font-sans leading-relaxed">Осуществляем оперативный выезд во все населенные пункты области бесплатно в рамках договорных отношений.</span>
+                            <span className="block font-display font-bold text-xs text-slate-900">Выезд инженера и замерщика по Зауралью</span>
+                            <span className="block text-[10px] text-slate-700 mt-1">Осуществляем оперативный выезд во все населенные пункты области бесплатно в рамках договорных отношений.</span>
                           </div>
                         </div>
                       </div>
 
-                      {/* Обновленный блок с картой и крупным текстом */}
-                      <div className="bg-slate-900 rounded-3xl p-8 shadow-sm text-white flex flex-col justify-between relative overflow-hidden min-h-[360px] border border-white/10">
-                        {/* Карта на фоне */}
-                        <div className="absolute inset-0 z-0 bg-white p-2">
-                          <img src="./images/kurgan-map.jpg" alt="Карта Курганской области" className="w-full h-full object-contain brightness-95 opacity-80" />
+                      <div className="bg-slate-900 rounded-3xl p-8 shadow-sm text-white flex flex-col justify-between relative overflow-hidden min-h-[320px]">
+                        <div className="absolute inset-0 bg-cover bg-center brightness-40 pointer-events-none" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1542224566-6e85f2e6772f?auto=format&fit=crop&w=800&q=80')` }} />
+                        <div className="relative z-10 space-y-4">
+                          <span className="text-[9px] bg-amber-500/20 text-amber-400 font-mono font-bold px-3 py-1 rounded-full border border-amber-500/20 uppercase">Курган и Шадринск</span>
+                          <h3 className="font-display font-black text-xl sm:text-2xl text-white">Работаем по всей Курганской области.</h3>
+                          <p className="text-gray-300 text-xs leading-relaxed max-w-sm">Базирование спецтехники в ключевых узлах области обеспечивает быструю доставку смесей и экономию на перемещении техники.</p>
                         </div>
-                        {/* затемняющий градиент поверх карты */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/30 z-10" />
-
-                        <div className="relative z-20 space-y-4">
-                          <span className="text-sm bg-amber-500 text-slate-950 font-mono font-bold px-3.5 py-1.5 rounded-full border border-slate-900 uppercase">Курган и Шадринск</span>
-                          <h3 className="font-display font-black text-3xl sm:text-4xl text-white leading-tight">Работаем по всей Курганской области.</h3>
-                          <p className="text-gray-200 text-sm leading-relaxed max-w-sm font-sans pt-1">Базирование спецтехники в ключевых узлах области обеспечивает быструю доставку смесей и экономию на перемещении техники.</p>
-                        </div>
-                        <div className="relative z-20 pt-6">
-                          <button onClick={() => document.getElementById("callback-form-box").scrollIntoView({ behavior: "smooth" })} className="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-slate-950 font-display font-black text-sm uppercase px-8 py-4.5 rounded-xl transition-all shadow-lg shadow-amber-500/10 flex items-center justify-center gap-2 cursor-pointer mt-2 border-2 border-slate-950 rounded-xl">Вызвать замерщика</button>
+                        <div className="relative z-10 pt-4">
+                          <button onClick={() => document.getElementById("callback-form-box").scrollIntoView({ behavior: "smooth" })} className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-display font-black text-[10px] uppercase tracking-widest px-5 py-3 rounded-lg shadow-md">Вызвать замерщика</button>
                         </div>
                       </div>
                     </div>
